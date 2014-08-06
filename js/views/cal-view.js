@@ -82,6 +82,7 @@ gumCal.CalView = Backbone.View.extend({
 		settings.prettyDays = this.getPrettyDays(settings.startDate, settings.dayCount);
 		settings.prettyStartDate = settings.prettyDays[0];
 		settings.prettyEndDate = settings.prettyDays[(settings.prettyDays.length)-1];
+		settings.prettyDates = this.getPrettyDates(settings.days);
 		return settings;
 	},
 
@@ -192,6 +193,13 @@ gumCal.CalView = Backbone.View.extend({
 
 	getPrettyDays: function(startDate, dayCount){
 		return this.incrementPrettyDays(this.incrementDays(startDate, dayCount));
+	},
+
+	getPrettyDates: function(days){
+		return _.map(days, function(day){
+			var date = new Date(day);
+			return date.getDate();
+		});
 	},
 
 	countDays: function (startDate, endDate){
