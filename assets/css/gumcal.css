@@ -1,0 +1,159 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  position: relative; }
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 100%;
+  vertical-align: baseline;
+  font-family: inherit;
+  color: inherit;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none; }
+
+body {
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+  background: #eaeaea url("../images/bg.png");
+  color: #4d4d4d;
+  width: 70%;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased; }
+
+button,
+input[type="checkbox"] {
+  outline: none; }
+
+button {
+  cursor: pointer; }
+
+.btn-primary[disabled] {
+  color: white; }
+
+/*++++++++++++++++++++++++++  
+// Month view
+++++++++++++++++++++++++++++*/
+* {
+  box-sizing: border-box; }
+
+.cal-month {
+  width: 100%;
+  margin: 0;
+  padding: 0; }
+
+.cal-month > li {
+  border: solid grey 1px;
+  display: block;
+  float: left;
+  list-style-type: none;
+  padding: 10px;
+  width: 14.2857142857143%;
+  height: 50px;
+  overflow: hidden;
+  cursor: pointer; }
+
+.cal-month > li:nth-of-type(7n+1) {
+  clear: left; }
+
+.cal-day > li {
+  cursor: pointer; }
+
+/*++++++++++++++++++++++++++++
+//	Day view 
+++++++++++++++++++++++++++++*/
+.cal-day {
+  border-top: solid 1px grey;
+  list-style-type: none;
+  padding-left: 0; }
+
+.cal-day > li {
+  border-bottom: solid grey 1px;
+  padding: 10px 5px;
+  position: relative; }
+
+.cal-day.buyer li {
+  background-color: #cccccc;
+  cursor: default; }
+
+/*++++++++++++++++++++++++++++
+//	Slots
+++++++++++++++++++++++++++++*/
+.slot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0 5px;
+  color: white; }
+
+.status {
+  text-transform: capitalize; }
+
+.is-available {
+  background-color: #5cb85c;
+  cursor: pointoggleCancelAllBtnter; }
+
+/* Seller styles */
+.seller.is-booked {
+  background-color: #428bca; }
+
+.seller.is-available {
+  background-color: #5cb85c; }
+
+.seller.is-past {
+  background-color: #cccccc;
+  cursor: default; }
+
+.seller.is-tentative {
+  background-color: #f0ad4e; }
+
+/* Buyer styles */
+.buyer.is-tentative:after {
+  content: 'Awaiting confirmation';
+  color: #999; }
+
+.buyer.is-booked,
+.buyer.is-tentative {
+  background-color: #cccccc;
+  cursor: default; }
+
+.buyer strong {
+  font-weight: normal; }
+
+/*++++++++++++++++++++++++++++
+//	Modals
+++++++++++++++++++++++++++++*/
+.success-notification {
+  display: block; }
+
+.success-notification.hidden {
+  display: none; }
+
+/*++++++++++++++++++++++++++++
+//	Clearfix
+++++++++++++++++++++++++++++*/
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table; }
+
+.clearfix:after {
+  clear: both; }
+
+/*++++++++++++++++++++++++++++
+//	Settings form
+++++++++++++++++++++++++++++*/
+.cal-config {
+  margin-top: 40px; }
