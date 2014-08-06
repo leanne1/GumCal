@@ -40,10 +40,21 @@ gumCal.MonthView = Backbone.View.extend({
 	//+++++++++++++++++++++++++++++++++++++++++
 
 	render: function(){
+		
+		//TODO: 'days' needs to be an array with: 
+		//1. date; 2. avail count; 3. booked count; 4. tentative count
+		//Then in the template you need to check if the count is gt 0 and only show badge when true <==== can current conditional do this? 
+		this.availableCount = this.collection.filterByStatus('available').length;
+		this.bookedCount = this.collection.filterByStatus('booked').length;
+		this.tentativeCount = this.collection.filterByStatus('tentative').length;
+
 		this.$el.html(this.monthTemplate({
 			monthYear: this.monthYear,
 			days: this.prettyDates,
-			context: this.context
+			context: this.context,
+			availableCount: this.availableCount,
+			bookedCount: this.bookedCount,
+			tentativeCount: this.tentativeCount
 		}));			
 	},
 

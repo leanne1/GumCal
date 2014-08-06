@@ -182,7 +182,7 @@
                     Available slots <span class="badge badge-success">{{slotCount}}</span>
                 </li>
                 <li class="list-group-item">
-                    Booked slots <span class="badge badge-primary">{{bookedCount}}</span>
+                    Booked slots <span class="badge badge-info">{{bookedCount}}</span>
                 </li>
                 {{#ifCondition autoConfirm false}}
                     <li class="list-group-item">
@@ -210,6 +210,12 @@
         {{#each days}}
         <li data-cal-day="{{@index}}">
             {{this}}
+                <span class="badge badge-success">{{../availableCount}}</span>
+            {{#ifCondition ../context 'seller'}}    
+                <span class="badge badge-info">{{../../bookedCount}}</span>
+                <span class="badge badge-warning">{{../../tentativeCount}}</span>
+            {{/ifCondition}}    
+           
         </li>
         {{/each}}
     </ol>

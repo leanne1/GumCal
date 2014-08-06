@@ -42,6 +42,18 @@ button {
   color: white; }
 
 /*++++++++++++++++++++++++++  
+// Badges
+++++++++++++++++++++++++++++*/
+.badge-success {
+  background-color: #468847; }
+
+.badge-info {
+  background-color: #3a87ad; }
+
+.badge-warning {
+  background-color: #f89406; }
+
+/*++++++++++++++++++++++++++  
 // Month view
 ++++++++++++++++++++++++++++*/
 * {
