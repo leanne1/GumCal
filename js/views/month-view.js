@@ -18,6 +18,7 @@ gumCal.MonthView = Backbone.View.extend({
 		this.adId = this.calSettings.adId;
 		this.parentView = this.calSettings.parentView;
 		this.prettyDates = this.calSettings.prettyDates;
+		this.monthYear = this.calSettings.monthYearString;
 		this.context = this.calSettings.context;
 		this.collection = gumCal.Cals[this.adId].slots;
 
@@ -40,6 +41,7 @@ gumCal.MonthView = Backbone.View.extend({
 
 	render: function(){
 		this.$el.html(this.monthTemplate({
+			monthYear: this.monthYear,
 			days: this.prettyDates,
 			context: this.context
 		}));			

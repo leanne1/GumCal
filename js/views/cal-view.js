@@ -28,7 +28,7 @@ gumCal.CalView = Backbone.View.extend({
 
 		this.lastDayViewed = undefined;
 		this.dayViewed = undefined;
-		
+
 		//+++++++++++++++++++++++++++++++++++++++++
 		//+ API event listeners
 		//+++++++++++++++++++++++++++++++++++++++++
@@ -83,6 +83,7 @@ gumCal.CalView = Backbone.View.extend({
 		settings.prettyStartDate = settings.prettyDays[0];
 		settings.prettyEndDate = settings.prettyDays[(settings.prettyDays.length)-1];
 		settings.prettyDates = this.getPrettyDates(settings.days);
+		settings.monthYearString = this.getMonthYear(settings.days);	
 		return settings;
 	},
 
@@ -239,6 +240,25 @@ gumCal.CalView = Backbone.View.extend({
 		month =  _date.getMonth();
 		year =  _date.getFullYear();
 		
+		
+
+		var days = [
+			'Sunday',
+			'Monday',
+			'Tuesday',
+			'Wednesday',
+			'Thursday',
+			'Friday',
+			'Saturday'
+		];
+
+		day = days[day];
+		month = this.getPrettyMonth(month);
+		prettyDate = day + ',' + ' ' + date + ' ' + month + ' ' + year;	
+		return prettyDate;
+	}, 
+
+	getPrettyMonth: function(month){
 		var months = [
 			'January',
 			'Febuary',
@@ -253,21 +273,34 @@ gumCal.CalView = Backbone.View.extend({
 			'November',
 			'December'
 		];
+		return months[month];
+	},
 
-		var days = [
-			'Sunday',
-			'Monday',
-			'Tuesday',
-			'Wednesday',
-			'Thursday',
-			'Friday',
-			'Saturday'
-		];
+	getMonthYear:function(days){
+		var strMonthYear = '', 
+			startDate = new Date(days[0]),
+			endDate = new Date(days[days.length-1]),
+			startMonth = this.getPrettyMonth(startDate.getMonth()),
+			endMonth = this.getPrettyMonth(endDate.getMonth()),
+			startYear = startDate.getFullYear(),
+			endYear = endDate.getFullYear()
+			;
 
-		day = days[day];
-		month = months[month];
-		prettyDate = day + ',' + ' ' + date + ' ' + month + ' ' + year;	
-		return prettyDate;
+		//Concatenate month string/s
+		if (startMonth === endMonth) {
+			strMonthYear += startMonth + ', ';
+		} else {
+			strMonthYear += startMonth + ' - ' + endMonth + ', ';
+		}
+		
+		//Concatenate years string/s
+		if (startYear === endYear) {
+			strMonthYear += startYear;
+		} else {
+			strMonthYear += startYear + '/' + endYear;
+		}
+		
+		return strMonthYear;
 	}
 });
 
