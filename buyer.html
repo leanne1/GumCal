@@ -251,17 +251,24 @@
                 <ul>
                     <li>
                         <p>Cancel all booked and pending appointments and <strong>close</strong> all available slots in your calendar</p>
-                        <button type="button" class="btn btn-danger" data-cancel-all-close>Cancel and <strong>close</strong> slots</button>
+                        <button type="button" class="btn btn-danger" data-cancel-all-close><strong>Close</strong> all slots</button>
                     </li>
                     <li>
                         <p>Cancel all booked and pending appointments and <strong>keep open</strong> all available slots in your calendar</p>
-                        <button type="button" class="btn btn-danger" data-cancel-all-keep>Cancel and <strong>keep</strong> slots</button>
+                        <button type="button" class="btn btn-danger" data-cancel-all-keep{{#ifCondition activeSlots false}} disabled{{/ifCondition}}>
+                            Cancel and <strong>keep</strong> slots
+                        </button>
                     </li>     
                 </ul>
-                <div class="success-notification cancel-all hidden alert-danger" role="alert">  
-                    <strong>All cancelled!</strong>
-                    Thanks, you have cancelled <strong>{{bookedCount}}</strong> appointments. Recipients have been notified by email.<br>
-                    You have <strong>{{slotCount}}</strong> available slots in your calendar.
+                <div class="success-notification cancel-all-keep hidden alert alert-danger" role="alert">  
+                    <strong>All apointments cancelled!</strong>
+                    Thanks, you have cancelled <strong>{{cancelledSlotCount}}</strong> appointments. <br>
+                    You now have <strong>{{updatedSlotCount}}</strong> available slots in your calendar.
+                </div>  
+                <div class="success-notification cancel-all-close hidden alert alert-danger" role="alert">  
+                    <strong>All slots closed!</strong>
+                    Thanks, you have cancelled <strong>{{cancelledSlotCount}}</strong> appointments. <br>
+                    You now have <strong>0</strong> available slots in your calendar.
                 </div>   
             </div>
             <div class="modal-footer">

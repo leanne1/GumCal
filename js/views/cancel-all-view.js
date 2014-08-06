@@ -24,7 +24,7 @@ gumCal.CancelAllView = Backbone.View.extend({
 		//Cache cal setting properties
 		this.adId = this.calSettings.adId;
 		this.collection = gumCal.Cals[this.calSettings.adId].slots;
-	
+
 		//Listen for bootstrap modal close event before removing view
 		this.$el.on('hidden.bs.modal', function () {
   			this.remove();
@@ -36,8 +36,11 @@ gumCal.CancelAllView = Backbone.View.extend({
 		//+ API event listeners
 		//+++++++++++++++++++++++++++++++++++++++++
 		
-		//Show success notification when slot cancelled
-		this.listenTo(this.collection, 'change:status destroy', this.showNotification);
+		//Show success notification when slots closed
+		this.listenTo(this.collection, 'change:status', this.showCancelNotification);
+
+		//Show success notification when slots cancelled
+		this.listenTo(this.collection, 'destroy', this.showCloseNotification);
 
 	},
 	
@@ -49,12 +52,14 @@ gumCal.CancelAllView = Backbone.View.extend({
 		this.bookedSlots = this.collection.filterByStatus( 'booked' );
 		this.availableSlots = this.collection.filterByStatus( 'available' );
 		this.tentativeSlots = this.collection.filterByStatus( 'tentative' );
+		this.cancelledSlotCount = this.bookedSlots.length + this.tentativeSlots.length;
 
 		var cancelAllView = this.$el.html(this.cancelAllTemplate({
 			bookedCount: this.bookedSlots.length,
 			slotCount: this.availableSlots.length,
 			tentativeCount: this.tentativeSlots.length,
-			cancelledSlotCount: (this.bookedSlots.length + this.tentativeSlots.length),
+			cancelledSlotCount: this.cancelledSlotCount,
+			updatedSlotCount: this.availableSlots.length + this.cancelledSlotCount,
 			activeSlots: !!(this.bookedSlots.length + this.tentativeSlots.length)
 		}));	
 		$('body').prepend(cancelAllView);
@@ -68,9 +73,13 @@ gumCal.CancelAllView = Backbone.View.extend({
 	//+ Show notfication
 	//+++++++++++++++++++++++++++++++++++++++++
 	
-	showNotification: function(){
-		this.render();
-		this.$('.success-notification.cancel-all').removeClass('hidden');
+	showCancelNotification: function(){
+		this.$('.success-notification.cancel-all-keep').removeClass('hidden');
+		this.$('[data-cancel-all-keep], [data-cancel-all-close]').prop('disabled', true);
+	},
+
+	showCloseNotification: function(){
+		this.$('.success-notification.cancel-all-close').removeClass('hidden');
 		this.$('[data-cancel-all-keep], [data-cancel-all-close]').prop('disabled', true);
 	},
 
