@@ -43,6 +43,20 @@ var Slots = Backbone.Collection.extend({
 		return activeSlots;
 	},
 
+	getStatusCountByDate: function(date, status){
+		var statusCountByDate,
+			slotsByDate
+			;
+
+		//Filter all slots by date	
+		slotsByDate = this.filterByDate(date);
+		
+		//Filter date slots by status	
+		statusCountByDate = this.filterByStatus.call(slotsByDate, status);
+		
+		return statusCountByDate;
+	},
+
 	//++++++++++++++++++++++++++++++++++
 	//+ Empty collection
 	//++++++++++++++++++++++++++++++++++

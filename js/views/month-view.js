@@ -17,10 +17,12 @@ gumCal.MonthView = Backbone.View.extend({
 		//Cache cal setting properties
 		this.adId = this.calSettings.adId;
 		this.parentView = this.calSettings.parentView;
+		this.dates = this.calSettings.days;
 		this.prettyDates = this.calSettings.prettyDates;
 		this.monthYear = this.calSettings.monthYearString;
 		this.context = this.calSettings.context;
 		this.collection = gumCal.Cals[this.adId].slots;
+		this.days = [];
 
 		this.render();
 
@@ -48,18 +50,40 @@ gumCal.MonthView = Backbone.View.extend({
 		this.bookedCount = this.collection.filterByStatus('booked').length;
 		this.tentativeCount = this.collection.filterByStatus('tentative').length;
 
+		this.getDayData();
+		
 		this.$el.html(this.monthTemplate({
 			monthYear: this.monthYear,
-			days: this.prettyDates,
+			days: this.days,
 			context: this.context,
-			availableCount: this.availableCount,
-			bookedCount: this.bookedCount,
-			tentativeCount: this.tentativeCount
 		}));			
 	},
 
 	close: function(){
 		this.remove();
+	},
+	
+	//+++++++++++++++++++++++++++++++++++++++++
+	//+ Get day data
+	//+++++++++++++++++++++++++++++++++++++++++
+	
+	//Get data to show in day cells of month view
+	getDayData:function(){
+		var self = this;
+		_.each(this.dates, function(date, dateIndex){
+			var dayData = [],
+				bookedCount, tentativeCount, availableCount;
+			
+			//Push the date the day's data array			
+			dayData.push(self.prettyDates[dateIndex]);
+
+			//Push the count for each status to the day's data array	
+			dayData.push(self.collection.getStatusCountByDate(date, 'booked'));
+			dayData.push(self.collection.getStatusCountByDate(date, 'tentative'));
+			dayData.push(self.collection.getStatusCountByDate(date, 'available'));
+			
+			self.days.push(dayData);
+		});
 	},
 
 	//+++++++++++++++++++++++++++++++++++++++++
