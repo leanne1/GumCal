@@ -35,6 +35,7 @@ var Slots = Backbone.Collection.extend({
 	//+ Collection get methods
 	//++++++++++++++++++++++++++++++++++
 	
+	//Get all tentative and booked slots
 	getActiveSlots: function(){
 		var tentativeSlots = this.filterByStatus('tentative'),
 			bookedSlots = this.filterByStatus('booked'),
@@ -43,6 +44,7 @@ var Slots = Backbone.Collection.extend({
 		return activeSlots;
 	},
 
+	//Get all slots for a given date and status
 	getStatusCountByDate: function(date, status){
 		var statusCountByDate,
 			slotsByDate

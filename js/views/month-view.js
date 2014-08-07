@@ -42,15 +42,12 @@ gumCal.MonthView = Backbone.View.extend({
 	//+++++++++++++++++++++++++++++++++++++++++
 
 	render: function(){
-		
-		//TODO: 'days' needs to be an array with: 
-		//1. date; 2. avail count; 3. booked count; 4. tentative count
-		//Then in the template you need to check if the count is gt 0 and only show badge when true <==== can current conditional do this? 
 		this.availableCount = this.collection.filterByStatus('available').length;
 		this.bookedCount = this.collection.filterByStatus('booked').length;
 		this.tentativeCount = this.collection.filterByStatus('tentative').length;
 
 		this.getDayData();
+		console.log(this.days)
 		
 		this.$el.html(this.monthTemplate({
 			monthYear: this.monthYear,
@@ -67,9 +64,14 @@ gumCal.MonthView = Backbone.View.extend({
 	//+ Get day data
 	//+++++++++++++++++++++++++++++++++++++++++
 	
-	//Get data to show in day cells of month view
+	//Get data to show in each day cell of month view, and push each created array to this.days
+	//1: PrettyDate number; 
+	//2: booked count for date; 
+	//3: tentative count for date 
+	//4. available count  for date
 	getDayData:function(){
 		var self = this;
+			this.days = [];
 		_.each(this.dates, function(date, dateIndex){
 			var dayData = [],
 				bookedCount, tentativeCount, availableCount;
@@ -78,9 +80,9 @@ gumCal.MonthView = Backbone.View.extend({
 			dayData.push(self.prettyDates[dateIndex]);
 
 			//Push the count for each status to the day's data array	
-			dayData.push(self.collection.getStatusCountByDate(date, 'booked'));
-			dayData.push(self.collection.getStatusCountByDate(date, 'tentative'));
-			dayData.push(self.collection.getStatusCountByDate(date, 'available'));
+			dayData.push(self.collection.getStatusCountByDate(date, 'booked').length);
+			dayData.push(self.collection.getStatusCountByDate(date, 'tentative').length);
+			dayData.push(self.collection.getStatusCountByDate(date, 'available').length);
 			
 			self.days.push(dayData);
 		});
