@@ -47,7 +47,6 @@ gumCal.MonthView = Backbone.View.extend({
 		this.tentativeCount = this.collection.filterByStatus('tentative').length;
 
 		this.getDayData();
-		console.log(this.days)
 		
 		this.$el.html(this.monthTemplate({
 			monthYear: this.monthYear,
@@ -94,6 +93,12 @@ gumCal.MonthView = Backbone.View.extend({
 	
 	//Handle 'day' click event by passing to cal view object
 	showDayView: function( e ){
+		console.log(e);
+
+		//var dayCell = e.target; 
+		//while (!dayCell.hasAttribute([data-cal-day])) { dayCell = dayCell.parent()}
+		//var day = parseInt(dayCell.getAttribute('data-cal-day'));
+		
 		var day = parseInt(e.target.getAttribute('data-cal-day'));
 		this.parentView.showDayView( day );
 	}

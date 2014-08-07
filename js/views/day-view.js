@@ -22,8 +22,8 @@ gumCal.DayView = Backbone.View.extend({
 		this.context = this.calSettings.context;
 		this.days = this.calSettings.days;
 		this.prettyDays = this.calSettings.prettyDays;
-		this.showDay = this.calSettings.showDay;
-		this.date = this.calSettings.days[this.calSettings.showDay];
+		this.showDay = this.calSettings.showDay; 
+		this.date = this.calSettings.days[this.calSettings.showDay]; //TODO: simplify to this.showDay when NaN bug fixed
 		this.slotDuration = this.calSettings.slotDuration
 		this.location = this.calSettings.location;
 		this.msgSubject = this.calSettings.msgSubject;
@@ -34,6 +34,12 @@ gumCal.DayView = Backbone.View.extend({
 
 		this.slotTimes = this.makeSlotPlaceholders();
 		this.prettySlotTimes = this.getPrettyTimes(this.slotTimes);
+
+		console.log('this.calSettings.showDay is day vew initialize')
+		console.log(this.calSettings.showDay)
+
+		console.log('this.date  in day view initialize');
+		console.log(this.date)
 
 		//+++++++++++++++++++++++++++++++++++++++++
 		//+ API event listeners
@@ -61,13 +67,21 @@ gumCal.DayView = Backbone.View.extend({
 			prettyDate = this.prettyDays[this.showDay]
 			;
 
+			console.log('this.slotTimes which the each iterates')
+			console.log(this.slotTimes)
 		//Concatenate times and pretty times for templating
 		_.each(this.slotTimes, function(time, index){
+			console.log('time as pushed into each loop [param]')	
+			console.log(time);
+
 			return times.push([
 				time,
 				self.prettySlotTimes[index]
 			]);
 		});
+
+		console.log('times is');
+		console.log(times);
 
 		this.$el.html(this.dayTemplate({
 			times: times,
@@ -107,7 +121,14 @@ gumCal.DayView = Backbone.View.extend({
 			increment = this.slotDuration,
 			slotTimes = this.incrementTime(date, startHour, endHour, increment)
 			;
+
+			//!!!This is undefined!!!!
+			console.log('this.date in makeSellerSlotPlaceholders')
+			console.log(this.date)
 	
+			console.log('slotTimes in makeSellerSlotPlaceholders')
+			console.log(slotTimes)
+
 		return slotTimes;
 	},
 
