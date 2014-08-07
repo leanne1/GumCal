@@ -209,11 +209,17 @@
     <ol class="cal-month clearfix">
         {{#each days}}
         <li data-cal-day="{{@index}}">
-            {{this}}
-                <span class="badge badge-success">{{../availableCount}}</span>
+            {{this.[0]}}
+                {{#ifNotEquals this.[3] 0}}
+                    <span class="badge badge-success">{{this.[3]}}</span>
+                {{/ifNotEquals}}    
             {{#ifCondition ../context 'seller'}}    
-                <span class="badge badge-info">{{../../bookedCount}}</span>
-                <span class="badge badge-warning">{{../../tentativeCount}}</span>
+                {{#ifNotEquals this.[1] 0}}
+                    <span class="badge badge-info">{{this.[1]}}</span>
+                {{/ifNotEquals}}        
+                {{#ifNotEquals this.[2] 0}}
+                    <span class="badge badge-warning">{{this.[2]}}</span>
+                {{/ifNotEquals}}  
             {{/ifCondition}}    
            
         </li>
