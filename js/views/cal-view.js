@@ -134,6 +134,11 @@ gumCal.CalView = Backbone.View.extend({
 			
 			//Render all slot subviews to day view
 			this.dayView.appendAllSlots();
+
+			//Show focus on month view day cell
+			this.$monthViewContainer.find('[data-cal-day]').removeClass('is-active');
+			this.$monthViewContainer.find('[data-cal-day="'+ dayToShow +'"]').addClass('is-active');
+
 		};
 		//Update last day viewed to current day
 		this.trigger('lastDayViewed', dayToShow);

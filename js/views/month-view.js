@@ -35,6 +35,7 @@ gumCal.MonthView = Backbone.View.extend({
 
 		//Update month view when collection
 		this.listenTo(this.collection, 'add change:status destroy', this.render);
+
 	},
 	
 	//+++++++++++++++++++++++++++++++++++++++++

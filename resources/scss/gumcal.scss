@@ -89,6 +89,9 @@ button {
 .cal-day > li {
     cursor: pointer;
 }
+.cal-month > li.is-active{
+    background-color:magenta;
+}
 
 /*++++++++++++++++++++++++++++
 //	Day view 
