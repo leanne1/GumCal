@@ -204,7 +204,7 @@
     {{/ifCondition}}
     <ol class="cal-month clearfix">
         {{#each days}}
-        <li data-cal-day="{{@index}}">
+        <li data-cal-day="{{@index}}"{{#ifCondition this.[4] true}} class="is-past"{{/ifCondition}} >
             {{this.[0]}}
                 {{#ifNotEquals this.[3] 0}}
                     <span class="badge badge-success">{{this.[3]}}</span>
@@ -217,7 +217,6 @@
                     <span class="badge badge-warning">{{this.[2]}}</span>
                 {{/ifNotEquals}}  
             {{/ifCondition}}    
-           
         </li>
         {{/each}}
     </ol>
@@ -431,13 +430,13 @@
 
 <!-- !!!FOR DEV -->
 <script>
-$('#date-from-123456789').val('2014-07-01');
-$('#date-to-123456789').val('2014-07-31');
+$('#date-from-123456789').val('2014-08-01');
+$('#date-to-123456789').val('2014-08-31');
 $('#location-123456789').val('Whittakers');
 $('#msg-subject-123456789').val('Why are you awesome?');
 
-$('#date-from-998989787').val('2014-07-01');
-$('#date-to-998989787').val('2014-07-31');
+$('#date-from-998989787').val('2014-08-01');
+$('#date-to-998989787').val('2014-08-31');
 $('#location-998989787').val('Whittakers 2');
 $('#msg-subject-998989787').val('Why are you awesome 2?');
 </script>

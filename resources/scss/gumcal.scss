@@ -90,7 +90,13 @@ button {
     cursor: pointer;
 }
 .cal-month > li.is-active{
-    background-color:magenta;
+    -webkit-box-shadow:inset 1px 1px 5px 2px #bbb;
+    box-shadow:inset 1px 1px 5px 2px #bbb;
+    background-color: #ddd;
+}
+
+.cal-month > li.is-past{
+    background-color:#ccc;
 }
 
 /*++++++++++++++++++++++++++++

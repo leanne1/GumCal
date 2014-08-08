@@ -69,6 +69,7 @@ gumCal.MonthView = Backbone.View.extend({
 	//2: booked count for date; 
 	//3: tentative count for date 
 	//4. available count  for date
+	//5. Whether day is in past
 	getDayData:function(){
 		var self = this;
 			this.days = [];
@@ -83,6 +84,7 @@ gumCal.MonthView = Backbone.View.extend({
 			dayData.push(self.collection.getStatusCountByDate(date, 'booked').length);
 			dayData.push(self.collection.getStatusCountByDate(date, 'tentative').length);
 			dayData.push(self.collection.getStatusCountByDate(date, 'available').length);
+			dayData.push(self.parentView.isInPast(self.dates[dateIndex]));
 			
 			self.days.push(dayData);
 		});

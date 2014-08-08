@@ -26,6 +26,7 @@ gumCal.CalView = Backbone.View.extend({
 
 		this.lastDayViewed = undefined;
 		this.dayViewed = undefined;
+		this.currentDate = this.getCurrentDate();
 
 		//+++++++++++++++++++++++++++++++++++++++++
 		//+ API event listeners
@@ -82,6 +83,7 @@ gumCal.CalView = Backbone.View.extend({
 		settings.prettyEndDate = settings.prettyDays[(settings.prettyDays.length)-1];
 		settings.prettyDates = this.getPrettyDates(settings.days);
 		settings.monthYearString = this.getMonthYear(settings.days);	
+		settings.currentDate = this.currentDate;
 		return settings;
 	},
 
@@ -147,6 +149,11 @@ gumCal.CalView = Backbone.View.extend({
 	//Update last day viewed var so we can go back to last day viewed on day tab
 	updateLastDayViewed: function( day ){
 		this.lastDayViewed = day;
+	},
+
+	//Boolean flag to check if given date is in the past
+	isInPast: function(date){
+		return this.currentDate > date;
 	},
 
 	//+++++++++++++++++++++++++++++++++++++++++
@@ -268,6 +275,7 @@ gumCal.CalView = Backbone.View.extend({
 		return months[month];
 	},
 
+	//Get a string of month/s and year/s for which the current calendar spans
 	getMonthYear:function(days){
 		var strMonthYear = '', 
 			startDate = new Date(days[0]),
@@ -293,6 +301,13 @@ gumCal.CalView = Backbone.View.extend({
 		}
 		
 		return strMonthYear;
+	},
+
+	//Get current date, normalised to UTC midnight
+	getCurrentDate: function(){
+		var today = new Date();
+		today.setUTCHours(0,0,0,0);	
+		return today;
 	}
 });
 
