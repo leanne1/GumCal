@@ -8,8 +8,6 @@ gumCal.CalView = Backbone.View.extend({
 	calTemplate: Handlebars.compile($("#calview-template").html()),
 	
 	events: {
-		'click [data-cal-tab="day"]' : 'getDayToShow',
-		'click [data-cal-tab="month"]' : 'showMonthView',
 		'click [data-cancel-all]' : 'showCancelAllView'
 	},
 
@@ -124,19 +122,9 @@ gumCal.CalView = Backbone.View.extend({
 	//+ Set up and show day view
 	//+++++++++++++++++++++++++++++++++++++++++
 
-	//When 'Day' tab clicked, find which day to show
-	getDayToShow: function(){
-		var dayToShow = this.lastDayViewed === undefined ? 0 : this.lastDayViewed ;
-		this.showDayView( dayToShow );
-	},
-	
 	//Show or build day view
 	showDayView: function( dayToShow ){
-		if ( dayToShow === this.lastDayViewed ) {
-			//unhide day view - we already have day view we want
-			this.$dayViewContainer.show();
-			this.$monthViewContainer.hide();
-		} else {
+		if ( dayToShow !== this.lastDayViewed ) {
 			//Trigger closeDayView day view event and build new day view
 			this.trigger('closeDayView');
 			this.buildDayView(dayToShow);
@@ -146,7 +134,6 @@ gumCal.CalView = Backbone.View.extend({
 			
 			//Render all slot subviews to day view
 			this.dayView.appendAllSlots();
-			this.$monthViewContainer.hide();
 		};
 		//Update last day viewed to current day
 		this.trigger('lastDayViewed', dayToShow);
