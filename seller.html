@@ -141,7 +141,7 @@
     <input type="submit" value="Build cal" data-cal-submit />
 </form>
 </section>
-<section id="cal-998989787"></section><!-- cal view el -->
+<section id="cal-998989787" class="is-seller"></section><!-- cal view el -->
 
 <script id="calview-template" type="text/x-handlebars-template">
     <h2>Appointments calendar<br>
@@ -233,7 +233,7 @@
         <li data-prev-day>Prev</li>
         <li data-next-day>Next</li>
     </ul>
-    <ol class="cal-day {{context}}">
+    <ol class="cal-day is-{{context}}">
         {{#each times}}
         <li data-cal-slot="{{@index}}" data-cal-datetime="{{this.[0]}}">
             {{this.[1]}}

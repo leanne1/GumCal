@@ -97,7 +97,14 @@ gumCal.MonthView = Backbone.View.extend({
 	
 	//Handle 'day' click event by passing to cal view object
 	showDayView: function( e ){
-		var day = parseInt($(e.currentTarget).attr('data-cal-day'));
-		this.parentView.showDayView( day );
+		var day = parseInt($(e.currentTarget).attr('data-cal-day')),
+			isPast = $(e.currentTarget).hasClass('is-past')
+			;
+		//Only show day view if we are in seller context, or in buyer context if the day is not in the past
+		if (this.context === 'seller' || !isPast) {
+			this.parentView.showDayView( day );
+		} else {
+			return;
+		}
 	}
 });

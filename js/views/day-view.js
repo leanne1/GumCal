@@ -199,9 +199,18 @@ gumCal.DayView = Backbone.View.extend({
 
 	//Prev day tab
 	getPrevDay: function(){
-		var prevDay = this.parentView.lastDayViewed - 1;
+		var prevDay = this.parentView.lastDayViewed - 1,
+			isInPast
+			;
 		prevDay = prevDay < 0 ? 0 : prevDay;
-		this.parentView.showDayView(prevDay);
+		isInPast = this.parentView.isInPast(this.days[prevDay]);
+		
+		//Check if we are in seller context, or if in buyer context, that chosen day is not in the past		
+		if (this.context === 'seller' || !isInPast){
+			this.parentView.showDayView(prevDay);
+		} else {
+			return;
+		}
 	},
 
 	//++++++++++++++++++++++++++++++++++++++

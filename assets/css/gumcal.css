@@ -89,6 +89,9 @@ button {
 .cal-month > li.is-past {
   background-color: #ccc; }
 
+.is-buyer .is-past {
+  cursor: default; }
+
 /*++++++++++++++++++++++++++++
 //	Day view 
 ++++++++++++++++++++++++++++*/
@@ -103,7 +106,6 @@ button {
   position: relative; }
 
 .cal-day.buyer li {
-  background-color: #cccccc;
   cursor: default; }
 
 /*++++++++++++++++++++++++++++

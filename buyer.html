@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="assets/css/jquery-ui.theme.min.css">
     </head>
     <body>
-		<section id="calendar"></section><!-- cal view el -->
+		<section id="calendar" class="is-buyer"></section><!-- cal view el -->
         
 <script id="calview-template" type="text/x-handlebars-template">
     <h2>Appointments calendar<br>
@@ -81,7 +81,7 @@
     {{/ifCondition}}
     <ol class="cal-month clearfix">
         {{#each days}}
-        <li data-cal-day="{{@index}}"{{#ifCondition this.[4] true}} class="is-past"{{/ifCondition}} >
+        <li data-cal-day="{{@index}}" class="{{#ifCondition this.[4] true}}is-past{{/ifCondition}}{{#ifCondition @index ../activeDay}} is-active{{/ifCondition}}">
             {{this.[0]}}
                 {{#ifNotEquals this.[3] 0}}
                     <span class="badge badge-success">{{this.[3]}}</span>
