@@ -53,6 +53,7 @@ gumCal.MonthView = Backbone.View.extend({
 			monthYear: this.monthYear,
 			days: this.days,
 			context: this.context,
+			activeDay: this.parentView.lastDayViewed 
 		}));			
 	},
 

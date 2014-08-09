@@ -204,7 +204,7 @@
     {{/ifCondition}}
     <ol class="cal-month clearfix">
         {{#each days}}
-        <li data-cal-day="{{@index}}"{{#ifCondition this.[4] true}} class="is-past"{{/ifCondition}} >
+        <li data-cal-day="{{@index}}" class="{{#ifCondition this.[4] true}}is-past{{/ifCondition}}{{#ifCondition @index ../activeDay}} is-active{{/ifCondition}}">
             {{this.[0]}}
                 {{#ifNotEquals this.[3] 0}}
                     <span class="badge badge-success">{{this.[3]}}</span>

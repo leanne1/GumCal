@@ -25,7 +25,6 @@ gumCal.CalView = Backbone.View.extend({
 		this.location = this.calSettings.location;
 
 		this.lastDayViewed = undefined;
-		this.dayViewed = undefined;
 		this.currentDate = this.getCurrentDate();
 
 		//+++++++++++++++++++++++++++++++++++++++++
