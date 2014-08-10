@@ -16,7 +16,7 @@ gumCal.CalView = Backbone.View.extend({
 		
 		//Cache cal setting properties
 		this.adId = this.calSettings.adId;
-		this.collection = gumCal.Cals[this.adId].slots;
+		this.collection = options.collection;
 		this.context = this.calSettings.context;
 		this.prettyStartDate = this.calSettings.prettyStartDate;
 		this.prettyEndDate = this.calSettings.prettyEndDate;
@@ -26,6 +26,9 @@ gumCal.CalView = Backbone.View.extend({
 
 		this.lastDayViewed = undefined;
 		this.currentDate = this.getCurrentDate();
+
+		console.log(this.calSettings);
+		console.log(this.collection);
 
 		//+++++++++++++++++++++++++++++++++++++++++
 		//+ API event listeners
@@ -95,6 +98,7 @@ gumCal.CalView = Backbone.View.extend({
 		if(this.context === 'seller') {
 			var dashboardViewOptions = _.extend({ 
 				el: this.$dashboardContainer,
+				collection: this.collection,
 				parentView: this
 			}, this.calSettings);
 			this.dashboardView = new gumCal.DashboardView( dashboardViewOptions );
@@ -105,6 +109,7 @@ gumCal.CalView = Backbone.View.extend({
 	buildMonthView: function(){
 		var monthViewOptions = _.extend({ 
 			el: this.$monthViewContainer,
+			collection: this.collection,
 			parentView: this
 		}, this.calSettings);
 		this.monthView = new gumCal.MonthView( monthViewOptions );
@@ -114,6 +119,7 @@ gumCal.CalView = Backbone.View.extend({
 	buildDayView: function(dayToShow){
 		var dayViewOptions = _.extend({ 
 				showDay: dayToShow,
+				collection: this.collection,
 				parentView: this
 			}, this.calSettings);
 		this.dayView = new gumCal.DayView( dayViewOptions );
@@ -164,9 +170,14 @@ gumCal.CalView = Backbone.View.extend({
 	//+++++++++++++++++++++++++++++++++++++++++
 
 	showCancelAllView: function(){
+		var cancelAllViewOptions = _.extend(
+			{ collection:this.collection }, 
+			this.calSettings
+			);
+		
 		//Close any currently active modal view
 		this.closeAllEditViews();
-		this.editView = new gumCal.CancelAllView( this.calSettings );
+		this.editView = new gumCal.CancelAllView( cancelAllViewOptions );
 	},
 
 	//+++++++++++++++++++++++++++++++++++++++++

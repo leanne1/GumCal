@@ -83,9 +83,15 @@
         {{#each days}}
         <li data-cal-day="{{@index}}" class="{{#ifCondition this.[4] true}}is-past{{/ifCondition}}{{#ifCondition @index ../activeDay}} is-active{{/ifCondition}}">
             {{this.[0]}}
-                {{#ifNotEquals this.[3] 0}}
+            {{#ifNotEquals this.[3] 0}}
+                {{#ifCondition ../../context 'seller'}}    
                     <span class="badge badge-success">{{this.[3]}}</span>
-                {{/ifNotEquals}}    
+                {{else}}
+                    {{#ifCondition this.[4] false}}        
+                        <span class="badge badge-success">{{this.[3]}}</span>
+                    {{/ifCondition}}           
+                {{/ifCondition}}      
+            {{/ifNotEquals}}    
             {{#ifCondition ../context 'seller'}}    
                 {{#ifNotEquals this.[1] 0}}
                     <span class="badge badge-info">{{this.[1]}}</span>
@@ -125,8 +131,10 @@
         - <strong  >{{status}}</strong>
         <br>
         {{#ifCondition status 'available'}}
-            <span data-delete-slot>Delete</span>
-            <span data-book-slot>Book</span>
+            {{#ifCondition isInPast false}}
+                <span data-delete-slot>Delete</span>
+                <span data-book-slot>Book</span>
+            {{/ifCondition}}     
         {{else}}
             <span><strong>Name:</strong> {{name}}</span>
             <span data-view-slot>View</span>
@@ -234,11 +242,15 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             {{#ifCondition status 'booked'}}
-                <button type="button" class="btn btn-danger" data-cancel-slot>Cancel booking</button>
+                {{#ifCondition isInPast false}}
+                    <button type="button" class="btn btn-danger" data-cancel-slot>Cancel booking</button>
+                {{/ifCondition}}    
             {{/ifCondition}}   
             {{#ifCondition status 'tentative'}}
-                <button type="button" class="btn btn-primary" data-confirm-slot>Confirm booking</button>
-                <button type="button" class="btn btn-danger" data-cancel-slot>Cancel booking</button>
+                {{#ifCondition isInPast false}}
+                    <button type="button" class="btn btn-primary" data-confirm-slot>Confirm booking</button>
+                    <button type="button" class="btn btn-danger" data-cancel-slot>Cancel booking</button>
+                {{/ifCondition}}    
             {{/ifCondition}}  
         </div>
     </div>

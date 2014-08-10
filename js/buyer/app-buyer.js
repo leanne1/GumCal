@@ -1,12 +1,14 @@
 var gumCal = gumCal || {};
-	gumCal.Cals = {};
+	gumCal.Cals = gumCal.Cals || {};
 
 //Buyer side initialise
 $(function(){
 	
 	//Instantiate a cal app 
 	var calConfig = gumCal.config,
-		adId = calConfig ? calConfig.adId : undefined;
+		adId = calConfig ? calConfig.adId : undefined,
+		slots = {}
+		;
 		
 		gumCal.Cals[adId] = {};
 
@@ -20,10 +22,10 @@ $(function(){
 		initSlots = function( settings ){
 			var adId = settings.adId;
 			
-			gumCal.Cals[adId].slots = new Slots(adId);
+			slots[adId] = new gumCal.Slots(adId);
 			//TODO: uncomment when using RESTful API
-			//gumCal.Cals[adId].slots.url = '/api/v1/' + adId + '/cal/slots';
-			gumCal.Cals[adId].slots.fetch({ reset: true });
+			//slots[adId].url = '/api/v1/' + adId + '/cal/slots';
+			slots[adId].fetch({ reset: true });
 		
 			initCalView(settings);
 		};
@@ -35,7 +37,7 @@ $(function(){
 		//Init new Backbone cal view [master view]
 		initCalView = function( settings ){
 			var $cal = $('#calendar'),
-				options = { settings: settings },
+				options = { settings: settings, collection: slots[settings.adId] },
 				calView = new gumCal.CalView( options );
 
 			$cal.append(calView.render().el);

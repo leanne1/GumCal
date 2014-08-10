@@ -1,12 +1,12 @@
 var gumCal = gumCal || {};
-	gumCal.Cals = {};
+	gumCal.Cals = gumCal.Cals || {};
+
 
 //Seller side initialise
 $(function(){
-	
 	var initialiseCal, getUserSettings,
 		calConfigs = document.querySelectorAll('[data-ad-config]'),
-		cals = []
+		cals = [], slots = {};
 		;
 		
 	//+++++++++++++++++++++++++++++++++++++++++
@@ -78,15 +78,15 @@ $(function(){
 	//App entry point - init new Backbone slots collection for this cal instance
 	initSlots = function( settings ){
 		var adId = settings.adId;
-		
+			
 		//TODO: initialising with new empry array literal yokes the two seller-side cal collections
 		//If need to do the above, try to do with empty array
-		gumCal.Cals[adId].slots = new Slots(adId);
+		slots[adId] = new gumCal.Slots(adId);
 		//TODO: uncomment when using RESTful API
-		//gumCal.Cals[adId].slots.url = '/api/v1/' + adId + '/cal/slots';
-		gumCal.Cals[adId].slots.fetch({ reset: true });
+		//slots[adId].url = '/api/v1/' + adId + '/cal/slots';
+		slots[adId].fetch({ reset: true });
 
-		cals[adId] = initCalView(settings);
+		cals[adId] = initCalView(settings, slots[adId]);
 	};
 
 	//+++++++++++++++++++++++++++++++++++++++++
@@ -94,9 +94,9 @@ $(function(){
 	//+++++++++++++++++++++++++++++++++++++++++
 
 	//Init new Backbone cal view [master view]
-	initCalView = function( settings ){
+	initCalView = function( settings, collection ){
 		var $cal = $('#cal-' + settings.adId),
-			options = { settings: settings },
+			options = { settings: settings, collection: slots[settings.adId] },
 			calView = new gumCal.CalView( options );
 			$cal.append(calView.render().el);
 
@@ -109,5 +109,4 @@ $(function(){
 		gumCal.Cals[adId] = {};
 		initialiseCal( el, adId );
 	});
-
 });

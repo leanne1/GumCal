@@ -50,7 +50,8 @@ gumCal.SlotView = Backbone.View.extend({
 			prettyTime: this.model.escape('prettyTime'),
 			status: this.model.escape('status'),
 			name: this.model.escape('name'),
-			context: this.context
+			context: this.context,
+			isInPast: this.parentView.isInPast(this.model.get('date'))
 		}));	
 
 		return this;
