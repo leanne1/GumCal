@@ -117,7 +117,8 @@ button {
     position: relative;
 }
 
-.cal-day.buyer li {
+.cal-day.buyer li,
+.cal-day.is-past li {
     cursor: default;
 }
 

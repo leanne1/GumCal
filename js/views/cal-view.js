@@ -150,11 +150,6 @@ gumCal.CalView = Backbone.View.extend({
 		this.lastDayViewed = day;
 	},
 
-	//Boolean flag to check if given date is in the past
-	isInPast: function(date){
-		return this.currentDate > date;
-	},
-
 	//+++++++++++++++++++++++++++++++++++++++++
 	//+ Switch to month view
 	//+++++++++++++++++++++++++++++++++++++++++
@@ -180,6 +175,15 @@ gumCal.CalView = Backbone.View.extend({
 
 	closeAllEditViews: function(){
 		this.editView && this.editView.remove();
+	},
+	
+	//+++++++++++++++++++++++++++++++++++++++++
+	//+ Calendar utils
+	//+++++++++++++++++++++++++++++++++++++++++
+
+	//Boolean flag to check if given date is in the past
+	isInPast: function(date){
+		return this.currentDate > date;
 	},
 
 	//+++++++++++++++++++++++++++++

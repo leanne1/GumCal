@@ -233,7 +233,7 @@
         <li data-prev-day>Prev</li>
         <li data-next-day>Next</li>
     </ul>
-    <ol class="cal-day is-{{context}}">
+    <ol class="cal-day is-{{context}}{{#ifCondition isInPast true}} is-past{{/ifCondition}}">
         {{#each times}}
         <li data-cal-slot="{{@index}}" data-cal-datetime="{{this.[0]}}">
             {{this.[1]}}

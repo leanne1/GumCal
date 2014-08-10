@@ -23,7 +23,7 @@ gumCal.DayView = Backbone.View.extend({
 		this.days = this.calSettings.days;
 		this.prettyDays = this.calSettings.prettyDays;
 		this.showDay = this.calSettings.showDay; 
-		this.date = this.calSettings.days[this.calSettings.showDay]; //TODO: simplify to this.showDay when NaN bug fixed
+		this.date = this.calSettings.days[this.showDay];
 		this.slotDuration = this.calSettings.slotDuration
 		this.location = this.calSettings.location;
 		this.msgSubject = this.calSettings.msgSubject;
@@ -72,7 +72,8 @@ gumCal.DayView = Backbone.View.extend({
 		this.$el.html(this.dayTemplate({
 			times: times,
 			prettyDate: prettyDate, 
-			context: this.context
+			context: this.context,
+			isInPast: this.parentView.isInPast(this.date)
 		}));	
 
 		return this;
@@ -127,12 +128,13 @@ gumCal.DayView = Backbone.View.extend({
 
 	createSlot: function( e ){
 		var slotIndex = parseInt(e.target.getAttribute('data-cal-slot')),
-			slotTime = e.target.getAttribute('data-cal-datetime')
+			slotTime = e.target.getAttribute('data-cal-datetime'), 
+			isInPast = this.parentView.isInPast(this.date);
 			; 
 			
 		//Check we clicked on a placeholder	to abort bubbing of slot view clicks
 		//and preventing multiple instances of the same model being created	
-		if (slotTime && this.context === 'seller') {
+		if (slotTime && !isInPast && this.context === 'seller') {
 			this.collection.create(this.createSlotAttributes(slotIndex), {wait : true});	
 		}
 	},
