@@ -134,7 +134,7 @@ gumCal.DayView = Backbone.View.extend({
 			
 		//Check we clicked on a placeholder	to abort bubbing of slot view clicks
 		//and preventing multiple instances of the same model being created	
-		if (slotTime && !isInPast && this.context === 'seller') {
+		if (slotTime && this.context === 'seller') { //&& !isInPast
 			this.collection.create(this.createSlotAttributes(slotIndex), {wait : true});	
 		}
 	},
