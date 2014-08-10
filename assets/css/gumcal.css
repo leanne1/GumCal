@@ -81,6 +81,9 @@ button {
 .cal-day > li {
   cursor: pointer; }
 
+.cal-day.is-buyer > li {
+  cursor: default; }
+
 .cal-month > li.is-active {
   -webkit-box-shadow: inset 1px 1px 5px 2px #bbb;
   box-shadow: inset 1px 1px 5px 2px #bbb;
@@ -88,6 +91,8 @@ button {
 
 .cal-month > li.is-past {
   background-color: #ccc; }
+  .cal-month > li.is-past .badge {
+    opacity: .5; }
 
 .is-buyer .is-past {
   cursor: default; }
@@ -147,10 +152,8 @@ button {
   content: 'Awaiting confirmation';
   color: #999; }
 
-.buyer.is-booked,
 .buyer.is-tentative {
-  background-color: #cccccc;
-  cursor: default; }
+  background-color: #cccccc; }
 
 .buyer strong {
   font-weight: normal; }

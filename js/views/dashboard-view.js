@@ -13,7 +13,7 @@ gumCal.DashboardView = Backbone.View.extend({
 		//Cache cal setting properties
 		this.adId = this.calSettings.adId;
 		this.parentView = this.calSettings.parentView;
-		this.collection = gumCal.Cals[this.adId].slots;
+		this.collection = options.collection;
 		this.locationPrivate = this.calSettings.locationPrivate;
 		this.autoConfirm = this.calSettings.autoConfirm;
 		this.location = this.calSettings.location;

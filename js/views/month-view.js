@@ -13,7 +13,7 @@ gumCal.MonthView = Backbone.View.extend({
 
 	initialize: function( options ){
 		this.calSettings = options || {};
-		
+			
 		//Cache cal setting properties
 		this.adId = this.calSettings.adId;
 		this.parentView = this.calSettings.parentView;
@@ -21,7 +21,7 @@ gumCal.MonthView = Backbone.View.extend({
 		this.prettyDates = this.calSettings.prettyDates;
 		this.monthYear = this.calSettings.monthYearString;
 		this.context = this.calSettings.context;
-		this.collection = gumCal.Cals[this.adId].slots;
+		this.collection = options.collection;
 		this.days = [];
 
 		this.render();
@@ -53,7 +53,7 @@ gumCal.MonthView = Backbone.View.extend({
 			monthYear: this.monthYear,
 			days: this.days,
 			context: this.context,
-			activeDay: this.parentView.lastDayViewed 
+			activeDay: this.parentView.lastDayViewed
 		}));			
 	},
 
@@ -66,11 +66,11 @@ gumCal.MonthView = Backbone.View.extend({
 	//+++++++++++++++++++++++++++++++++++++++++
 	
 	//Get data to show in each day cell of month view, and push each created array to this.days
-	//1: PrettyDate number; 
-	//2: booked count for date; 
-	//3: tentative count for date 
-	//4. available count  for date
-	//5. Whether day is in past
+	//0: PrettyDate number; 
+	//1: booked count for date; 
+	//2: tentative count for date 
+	//3. available count  for date
+	//4. Whether day is in past
 	getDayData:function(){
 		var self = this;
 			this.days = [];

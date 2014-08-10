@@ -23,7 +23,7 @@ gumCal.CancelAllView = Backbone.View.extend({
 		
 		//Cache cal setting properties
 		this.adId = this.calSettings.adId;
-		this.collection = gumCal.Cals[this.calSettings.adId].slots;
+		this.collection = this.calSettings.collection;
 
 		//Listen for bootstrap modal close event before removing view
 		this.$el.on('hidden.bs.modal', function () {

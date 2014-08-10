@@ -18,6 +18,9 @@ gumCal.DetailsView = Backbone.View.extend({
 	
 	initialize: function( options ){
 		this.calSettings = options || {};
+
+		//Cache cal setting properties
+		this.parentView = this.calSettings.parentView;
 	
 		//Listen for bootstrap modal close event before removing view
 		this.$el.on('hidden.bs.modal', function () {
@@ -48,7 +51,8 @@ gumCal.DetailsView = Backbone.View.extend({
 			email: this.model.escape('email'),
 			msgSubject: this.model.escape('msgSubject'),
 			message: this.model.escape('message'),
-			status: this.model.escape('status')
+			status: this.model.escape('status'),
+			isInPast: this.parentView.isInPast(this.model.get('date'))
 		}));	
 		
 		$('body').prepend(detailsView);	

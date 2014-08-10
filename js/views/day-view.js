@@ -18,7 +18,7 @@ gumCal.DayView = Backbone.View.extend({
 		
 		//Cache cal setting properties
 		this.parentView = this.calSettings.parentView; //Cal view
-		this.collection = gumCal.Cals[this.calSettings.adId].slots;
+		this.collection = options.collection;
 		this.context = this.calSettings.context;
 		this.days = this.calSettings.days;
 		this.prettyDays = this.calSettings.prettyDays;
@@ -30,15 +30,13 @@ gumCal.DayView = Backbone.View.extend({
 		this.autoConfirm = this.calSettings.autoConfirm;	
 		this.slotViews = [];
 		
-		console.log(this.calSettings);
-
 		this.slotTimes = this.makeSlotPlaceholders();
 		this.prettySlotTimes = this.getPrettyTimes(this.slotTimes);
 
 		//+++++++++++++++++++++++++++++++++++++++++
 		//+ API event listeners
 		//+++++++++++++++++++++++++++++++++++++++++
-		
+
 		//New slot added to collection - render its subview to day view
 		this.listenTo(this.collection, 'add', this.appendOneSlot);
 		
@@ -47,7 +45,6 @@ gumCal.DayView = Backbone.View.extend({
 
 		//Close view
 		this.listenTo(this.parentView, 'calViewClosed', this.close);
-
 	},
 
 	//+++++++++++++++++++++++++++++++++++++++++
@@ -134,7 +131,7 @@ gumCal.DayView = Backbone.View.extend({
 			
 		//Check we clicked on a placeholder	to abort bubbing of slot view clicks
 		//and preventing multiple instances of the same model being created	
-		if (slotTime && this.context === 'seller') { //&& !isInPast
+		if (slotTime && !isInPast && this.context === 'seller') { 
 			this.collection.create(this.createSlotAttributes(slotIndex), {wait : true});	
 		}
 	},

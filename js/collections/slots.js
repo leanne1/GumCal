@@ -1,6 +1,6 @@
 var gumCal = gumCal || {};
 
-var Slots = Backbone.Collection.extend({
+gumCal.Slots = Backbone.Collection.extend({
 
 	//URL is set at collection instantiation as '/api/v1/' + settings.adId + '/cal/slots';
 
