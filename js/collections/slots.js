@@ -31,6 +31,16 @@ gumCal.Slots = Backbone.Collection.extend({
 		});
 	},
 	
+	filterByLive: function(){
+		var today = new Date();
+			today.setUTCHours(0,0,0,0);
+			today = today.getTime()
+		
+		return this.filter(function(slot){
+			return slot.get('date') >= today;
+		});	
+	},
+
 	//++++++++++++++++++++++++++++++++++
 	//+ Collection get methods
 	//++++++++++++++++++++++++++++++++++
