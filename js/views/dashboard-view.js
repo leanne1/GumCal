@@ -37,9 +37,9 @@ gumCal.DashboardView = Backbone.View.extend({
 	
 	render: function(){
 		this.$el.html(this.dashboardTemplate({
-			bookedCount: this.bookedSlots.length,
-			slotCount: this.availableSlots.length,
-			tentativeCount: this.tentativeSlots.length,
+			liveBookedCount: this.liveBookedSlots.length,
+			liveSlotCount: this.liveAvailableSlots.length,
+			liveTentativeCount: this.liveTentativeSlots.length,
 			locationPrivate: this.locationPrivate,
 			autoConfirm: this.autoConfirm,
 			location: this.location,
@@ -58,9 +58,9 @@ gumCal.DashboardView = Backbone.View.extend({
 	//Get count of slot but status, only if slot not in past	
 	updateDashboard: function(){
 		var liveSlots = this.collection.filterByLive();
-		this.bookedSlots = this.collection.filterByStatus.call(liveSlots, 'booked' );
-		this.availableSlots = this.collection.filterByStatus.call(liveSlots, 'available' );
-		this.tentativeSlots = this.collection.filterByStatus.call(liveSlots, 'tentative' );
+		this.liveBookedSlots = this.collection.filterByStatus.call(liveSlots, 'booked' );
+		this.liveAvailableSlots = this.collection.filterByStatus.call(liveSlots, 'available' );
+		this.liveTentativeSlots = this.collection.filterByStatus.call(liveSlots, 'tentative' );
 		this.render();
 	},
 

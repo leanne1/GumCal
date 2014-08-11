@@ -49,18 +49,19 @@ gumCal.CancelAllView = Backbone.View.extend({
 	//+++++++++++++++++++++++++++++++++++++++++
 
 	render: function(){
-		this.bookedSlots = this.collection.filterByStatus( 'booked' );
-		this.availableSlots = this.collection.filterByStatus( 'available' );
-		this.tentativeSlots = this.collection.filterByStatus( 'tentative' );
-		this.cancelledSlotCount = this.bookedSlots.length + this.tentativeSlots.length;
+		var liveSlots = this.collection.filterByLive();
+		this.liveBookedSlots = this.collection.filterByStatus.call(liveSlots, 'booked' );
+		this.liveAvailableSlots = this.collection.filterByStatus.call(liveSlots, 'available' );
+		this.liveTentativeSlots = this.collection.filterByStatus.call(liveSlots, 'tentative' );
+		this.cancelledSlotCount = this.liveBookedSlots.length + this.liveTentativeSlots.length;
 
 		var cancelAllView = this.$el.html(this.cancelAllTemplate({
-			bookedCount: this.bookedSlots.length,
-			slotCount: this.availableSlots.length,
-			tentativeCount: this.tentativeSlots.length,
+			bookedCount: this.liveBookedSlots.length,
+			slotCount: this.liveAvailableSlots.length,
+			tentativeCount: this.liveTentativeSlots.length,
 			cancelledSlotCount: this.cancelledSlotCount,
-			updatedSlotCount: this.availableSlots.length + this.cancelledSlotCount,
-			activeSlots: !!(this.bookedSlots.length + this.tentativeSlots.length)
+			updatedSlotCount: this.liveAvailableSlots.length + this.cancelledSlotCount,
+			activeSlots: !!(this.liveBookedSlots.length + this.liveTentativeSlots.length)
 		}));	
 		$('body').prepend(cancelAllView);
 		
@@ -89,15 +90,16 @@ gumCal.CancelAllView = Backbone.View.extend({
 	
 	//Destroy all slots
 	cancelCloseAllSlots: function(){
-		this.collection.empty();
+		this.collection.emptyLive();
 	},
 
 	//Revert tentative and booked slots to available
 	cancelKeepAllSlots: function(){
-		var activeSlots = this.collection.getActiveSlots();
+		var activeSlots = this.collection.getActiveSlots(),
+			liveSlots = this.collection.filterByLive.call(activeSlots);
 		
-		if (activeSlots.length){
-			_.each(activeSlots, function(model){
+		if (liveSlots.length){
+			_.each(liveSlots, function(model){
 				model.setAttributes({status:'available'});
 			});			
 		}

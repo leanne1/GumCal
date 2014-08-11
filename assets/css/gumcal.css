@@ -92,7 +92,7 @@ button {
 .cal-month > li.is-past {
   background-color: #ccc; }
   .cal-month > li.is-past .badge {
-    opacity: .5; }
+    opacity: .35; }
 
 .is-buyer .is-past {
   cursor: default; }

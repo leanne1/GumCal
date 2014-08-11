@@ -175,14 +175,14 @@
             </div>    
             <ul class="list-group">
                 <li class="list-group-item">
-                    Available slots <span class="badge badge-success">{{slotCount}}</span>
+                    Available slots <span class="badge badge-success">{{liveSlotCount}}</span>
                 </li>
                 <li class="list-group-item">
-                    Booked slots <span class="badge badge-info">{{bookedCount}}</span>
+                    Booked slots <span class="badge badge-info">{{liveBookedCount}}</span>
                 </li>
                 {{#ifCondition autoConfirm false}}
                     <li class="list-group-item">
-                        Awaiting confirmation <span class="badge badge-warning">{{tentativeCount}}</span>
+                        Awaiting confirmation <span class="badge badge-warning">{{liveTentativeCount}}</span>
                     </li>
                 {{/ifCondition}}     
             </ul>
