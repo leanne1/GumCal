@@ -1,0 +1,60 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
+{\fonttbl\f0\fnil\fcharset0 Monaco;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red33\green94\blue17;\red255\green255\blue255;\red96\green96\blue96;
+\red10\green25\blue110;\red115\green26\blue0;\red56\green91\blue145;\red37\green43\blue51;\red32\green101\blue255;
+\red11\green0\blue202;\red32\green101\blue255;\red70\green144\blue90;}
+\paperw12240\paperh20160\margl1440\margr1440\vieww12400\viewh12900\viewkind0
+\deftab720
+\pard\pardeftab720\sl320
+
+\f0\fs22 \cf2 \cb3 jQuery\cf4 .\cf5 ajax\cf4 (\{\
+    \cf6 url\cf4 : \cf7 '
+\f1 \cf8 \cb1 /api/v1/123456789/cal/slots/\cf9 53ef80462e08218010000001
+\f0 \cf7 \cb3 '\cf4 ,\
+    \cf6 type\cf4 : \cf7 'PUT'\cf4 ,\
+    \cf6 data\cf4 : \{\
+        
+\f1 \cf8 \cb1 'autoConfirm': false,\
+\pard\pardeftab720
+\cf8         'date': \cf10 1408147200000\cf8 ,\
+        'duration': 15,\
+        'email': "test1@test1.com",\
+        'location': "Anywhere but here",\
+        'message': "Nearly there now",\
+        'msgSubject': "How are we doing?",\
+        'name': "tester1",\
+        'phone': "0207 123 4567",\
+        'prettyDate': "Sat Aug 16 2014",\
+        'prettyTime': "19.00",\
+        'status': "available",\
+        'time': \cf10 1408147200000
+\f0 \cf4 \cb3     \},\
+\pard\pardeftab720\sl320
+\cf4     \cf6 success\cf4 : \cf2 function\cf4 ( data, textStatus, jqXHR ) \{\
+        \cf2 console\cf4 .\cf5 log\cf4 ( \cf7 'Put response:'\cf4  );\
+        \cf2 console\cf4 .\cf5 dir\cf4 ( data );\
+        \cf2 console\cf4 .\cf5 log\cf4 ( textStatus );\
+        \cf2 console\cf4 .\cf5 dir\cf4 ( jqXHR );\
+    \}\
+\});\cf0 \cb1 \
+\
+\
+\pard\pardeftab720\sl320
+\cf2 \cb3 jQuery\cf4 .\cf5 ajax\cf4 (\{\
+    \cf6 url\cf4 : \cf7 '/api/books/
+\f1 \cf11 53ef80462e08218010000001
+\f0 \cf7 '\cf4 ,\
+    \cf6 type\cf4 : \cf7 'PUT'\cf4 ,\
+    \cf6 data\cf4 : \{\
+        \cf7 'title'\cf4 : \cf7 'JavaScript The good parts'\cf4 ,\
+        \cf7 'author'\cf4 : \cf7 'The Legendary Douglas Crockford'\cf4 ,\
+        \cf7 'releaseDate'\cf4 : \cf2 new\cf4  \cf5 Date\cf4 ( \cf12 2008\cf4 , \cf12 4\cf4 , \cf12 1\cf4  ).\cf5 getTime\cf4 ()\
+    \},\
+    \cf6 success\cf4 : \cf2 function\cf4 ( data, textStatus, jqXHR ) \{\
+        \cf2 console\cf4 .\cf5 log\cf4 ( \cf7 'Put response:'\cf4  );\
+        \cf2 console\cf4 .\cf5 dir\cf4 ( data );\
+        \cf2 console\cf4 .\cf5 log\cf4 ( textStatus );\
+        \cf2 console\cf4 .\cf5 dir\cf4 ( jqXHR );\
+    \}\
+\});\cf0 \cb1 \
+}
