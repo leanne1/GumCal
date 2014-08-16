@@ -96,7 +96,7 @@ $(function(){
 	//Init new Backbone cal view [master view]
 	initCalView = function( settings, collection ){
 		var $cal = $('#cal-' + settings.adId),
-			options = { settings: settings, collection: slots[settings.adId] },
+			options = { settings: settings, collection: collection },
 			calView = new gumCal.CalView( options );
 			$cal.append(calView.render().el);
 

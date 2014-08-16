@@ -27,7 +27,7 @@ $(function(){
 			//slots[adId].url = '/api/v1/' + adId + '/cal/slots';
 			slots[adId].fetch({ reset: true });
 		
-			initCalView(settings);
+			initCalView(settings, slots[adId]);
 		};
 		
 		//+++++++++++++++++++++++++++++++++++++++++
@@ -35,9 +35,9 @@ $(function(){
 		//+++++++++++++++++++++++++++++++++++++++++
 
 		//Init new Backbone cal view [master view]
-		initCalView = function( settings ){
+		initCalView = function( settings, collection ){
 			var $cal = $('#calendar'),
-				options = { settings: settings, collection: slots[settings.adId] },
+				options = { settings: settings, collection: collection },
 				calView = new gumCal.CalView( options );
 
 			$cal.append(calView.render().el);
