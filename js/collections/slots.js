@@ -73,13 +73,15 @@ gumCal.Slots = Backbone.Collection.extend({
 	//+ Empty collection
 	//++++++++++++++++++++++++++++++++++
 
+	//Empty whole collection
 	empty: function(){
 		var model;
 		while ( model = this.first()) {
 			model.destroy();
 		}
 	},
-
+	
+	//Destroy live slots
 	emptyLive: function(){
 		var liveSlots = this.filterByLive();
 

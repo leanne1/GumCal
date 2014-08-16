@@ -88,12 +88,12 @@ gumCal.CancelAllView = Backbone.View.extend({
 	//+ Cancel all slots
 	//+++++++++++++++++++++++++++++++++++++++++
 	
-	//Destroy all slots
+	//Destroy all live slots
 	cancelCloseAllSlots: function(){
 		this.collection.emptyLive();
 	},
 
-	//Revert tentative and booked slots to available
+	//Revert all live tentative and booked slots to available
 	cancelKeepAllSlots: function(){
 		var activeSlots = this.collection.getActiveSlots(),
 			liveSlots = this.collection.filterByLive.call(activeSlots);
