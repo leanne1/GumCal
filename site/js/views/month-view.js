@@ -34,10 +34,8 @@ gumCal.MonthView = Backbone.View.extend({
 		this.listenTo(this.parentView, 'calViewClosed', this.close);
 
 		//Update month view when collection
-		this.listenTo(this.collection, 'reset add change:status destroy', this.render);
-
-		this.listenTo(this.collection, 'all', this.render);
-
+		this.listenTo(this.collection, 'reset add change:status destroy remove', this.render);
+		
 	},
 	
 	//+++++++++++++++++++++++++++++++++++++++++

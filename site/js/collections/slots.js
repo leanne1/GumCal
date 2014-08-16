@@ -10,7 +10,6 @@ gumCal.Slots = Backbone.Collection.extend({
 		this.pollRemote();
 	},
 
-
 	//++++++++++++++++++++++++++++++++++
 	//+ Remote collection polling
 	//++++++++++++++++++++++++++++++++++
@@ -18,32 +17,12 @@ gumCal.Slots = Backbone.Collection.extend({
 	pollRemote: function(){
 		var self = this;
 		this.poll = window.setInterval(function(){
-			self.fetchCollection();
+			self.fetch();
 		},1000);
 	},
 
 	stopPoll: function(){
 		window.clearInterval(this.poll);
-	},
-
-	//++++++++++++++++++++++++++++++++++
-	//+ Collection fetch
-	//++++++++++++++++++++++++++++++++++
-
-	fetchCollection: function(){
-		//TODO: This the only way i have found to make the local storage instance talk to the native local storage
-		//When it is updated by another instance of Backbone.LocalStorage
-		//It is a hack that won't be necessary when using a server as a persistence layer
-		this.fetch({
-			success: function(collection){
-				console.log('fetch success called yay!')
-				console.log('collection length is now ' + collection.length);
-			},
-			error: function(collection){
-				console.log('fetch ERROR called boo!');
-				console.log('collection length is now ' + collection.length);
-			}
-		});
 	},
 
 	//++++++++++++++++++++++++++++++++++

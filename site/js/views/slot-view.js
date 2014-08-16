@@ -29,8 +29,8 @@ gumCal.SlotView = Backbone.View.extend({
 		//Update slot view when model status changes	
 		this.listenTo(this.model, 'change:status', this.render);
 
-		//Remove slot view when its model is destroyed	
-		this.listenTo(this.model, 'destroy', this.close);
+		//Remove slot view when its model is removed from remote collection	
+		this.listenTo(this.model, 'remove', this.close);
 	},
 	
 	//+++++++++++++++++++++++++++++++++++++++++
@@ -39,6 +39,8 @@ gumCal.SlotView = Backbone.View.extend({
 	
 	//Returning view for immediate appending to day view
 	render: function(){
+		console.log('slot view render called');
+
 		//Set status class on slot
 		this.$el
 			.removeClass()
@@ -63,11 +65,13 @@ gumCal.SlotView = Backbone.View.extend({
 	
 	//Delete slot model
 	deleteSlot: function(){
+		console.log('delete slot from slotview');
 		this.model.destroy();
 	},
 
 	//Remove slot view
 	close: function(){
+		console.log('remove slot view from slotview');
 		this.remove();
 	},
 

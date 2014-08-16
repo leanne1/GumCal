@@ -39,7 +39,7 @@ gumCal.DayView = Backbone.View.extend({
 
 		//New slot added to collection - render its subview to day view
 		this.listenTo(this.collection, 'add', this.appendOneSlot);
-		
+
 		//Day view (this) removed - remove all slot subviews
 		this.listenTo(this.parentView, 'closeDayView', this.close);
 
