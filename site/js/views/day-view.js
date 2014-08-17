@@ -169,10 +169,18 @@ gumCal.DayView = Backbone.View.extend({
 	//Called by cal view at page load
 	appendAllSlots: function(){
 		var self = this,
-			slots = this.collection.filterByDate(this.date);
-		_.each(slots, function(slot){
-			self.appendOneSlot(slot);
-		});
+			slots = this.collection.filterByDate(this.date),
+			availableSlots = this.collection.filterByStatus.call(slots, 'available')
+			;
+		if (this.context === 'seller') {
+			_.each(slots, function(slot){
+				self.appendOneSlot(slot);
+			});
+		} else {
+			_.each(availableSlots, function(slot){
+				self.appendOneSlot(slot);
+			});
+		}
 	},
 
 	//+++++++++++++++++++++++++++++++++++++++++
