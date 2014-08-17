@@ -6,7 +6,8 @@ gumCal.Slot = Backbone.Model.extend({
 		name: '',
 		email: '',
 		phone: '',
-		message: ''
+		message: '',
+		bookedBy: ''
 	},
 
 	//TODO: We may need to change this value / remove this property
@@ -22,9 +23,8 @@ gumCal.Slot = Backbone.Model.extend({
 	//+ Book slot
 	//+++++++++++++++++++++++++++++++++++++++++
 
+	//Called from booking view
 	bookSlot: function(attr, context){
-		console.log('this.autoConfirm')
-		console.log(this.autoConfirm)
 		if ( (context === 'seller') || (context === 'buyer' && this.autoConfirm) ) {
 			attr.status = 'booked';
 		} else if ( context === 'buyer' && !this.autoConfirm ) {
@@ -43,7 +43,8 @@ gumCal.Slot = Backbone.Model.extend({
 			name: '',
 			phone: '',
 			email: '',
-			message: ''
+			message: '',
+			bookedBy: ''
 		}
 		this.setAttributes(attr);
 	},

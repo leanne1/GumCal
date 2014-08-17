@@ -47,7 +47,8 @@ var Slot = new mongoose.Schema({
     prettyDate: String,
     prettyTime: String,
     status: String,
-    time: Number
+    time: Number,
+    bookedBy: String
 });
 
 //Models
@@ -80,7 +81,8 @@ app.post( '/api/v1/123456789/cal/slots', function( request, response ) {
         prettyDate: request.body.prettyDate,
         prettyTime: request.body.prettyTime,
         status: request.body.status,
-        time: request.body.time
+        time: request.body.time,
+        bookedBy: request.body.bookedBy
     });
     
     return slot.save( function( err ) {
@@ -122,6 +124,7 @@ app.put( '/api/v1/123456789/cal/slots/:id', function( request, response ) {
         slot.prettyTime = request.body.prettyTime;
         slot.status = request.body.status;
         slot.time = request.body.time;
+        slot.bookedBy = request.body.bookedBy;
 
         return slot.save( function( err ) {
             if( !err ) {

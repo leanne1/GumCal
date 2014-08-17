@@ -76,14 +76,19 @@ gumCal.SlotView = Backbone.View.extend({
 	//according to new status and whether view is buyer or seller
 	updateSlotView: function(slot){
 		//TODO: Update notification panel on booked - remove name or find another way to do this
-		var updatedStatus, previousStatus;
+		var updatedStatus, previousStatus, bookedBy;
 		if(this.context === 'seller'){
 			//Seller side slot view updates
 			this.render();
 		} else {
+			console.log('buyer sude status change');
 			//Buyer side slot view updates
 			updatedStatus = slot.get('status');
 			previousStatus = slot.previous('status');
+			bookedBy = slot.get('bookedBy');
+
+console.log('bookedBy');
+console.log(bookedBy);
 
 			if (updatedStatus === 'available') {
 				if (previousStatus === 'tentative' || previousStatus === 'booked') {
@@ -91,7 +96,12 @@ gumCal.SlotView = Backbone.View.extend({
 				}
 				this.render();
 			} else if (updatedStatus === 'booked') {
-				this.$el.addClass('is-booked').removeClass('is-available');	
+				if (bookedBy === 'buyer') {
+					this.$el.addClass('is-booked').removeClass('is-available');	
+				} else if (bookedBy === 'seller') {
+					console.log('booked by seller')
+					this.close();	
+				}
 			} else if (updatedStatus === 'tentative') {
 				this.$el.addClass('is-tentative').removeClass('is-available');	
 			}

@@ -75,7 +75,8 @@ gumCal.BookingView = Backbone.View.extend({
 			name: this.$('[id^="name-"]').val(),
 			phone: this.$('[id^="phone-"]').val(),
 			email: this.$('[id^="email-"]').val(),
-			message: this.$('[id^="msg-"]').val()
+			message: this.$('[id^="msg-"]').val(),
+			bookedBy: this.context,
 		};
 		
 		this.model.bookSlot(attr, this.context);
