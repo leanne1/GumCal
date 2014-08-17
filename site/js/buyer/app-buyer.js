@@ -24,9 +24,8 @@ $(function(){
 			
 			slots[adId] = new gumCal.Slots(adId);
 			
-			//TODO: uncomment when using RESTful API
+			///TODO: When using RESTful API, change this to be actual url
 			slots[adId].url = '/api/v1/123456789/cal/slots';
-			//slots[adId].url = '/api/v1/' + adId + '/cal/slots';
 			slots[adId].fetch({ reset: true });
 			
 			initCalView(settings, slots[adId]);

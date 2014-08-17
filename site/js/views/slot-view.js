@@ -9,7 +9,7 @@ gumCal.SlotView = Backbone.View.extend({
 	
 	events: {
 		'click [data-delete-slot]' : 'deleteSlot',
-		'click [data-book-slot]' : 'showEditView',
+		'click [data-book-slot]' : 'verifySlot',
 		'click [data-view-slot]' : 'showEditView'
 	},
 	
@@ -72,23 +72,22 @@ gumCal.SlotView = Backbone.View.extend({
 		this.remove();
 	},
 
+	//+++++++++++++++++++++++++++++++++++++++++
+	//+ Update slot views
+	//+++++++++++++++++++++++++++++++++++++++++
+
 	//Handling of slot view rendering or removal on slot status change
 	//according to new status and whether view is buyer or seller
 	updateSlotView: function(slot){
-		//TODO: Update notification panel on booked - remove name or find another way to do this
 		var updatedStatus, previousStatus, bookedBy;
 		if(this.context === 'seller'){
 			//Seller side slot view updates
 			this.render();
 		} else {
-			console.log('buyer sude status change');
 			//Buyer side slot view updates
 			updatedStatus = slot.get('status');
 			previousStatus = slot.previous('status');
 			bookedBy = slot.get('bookedBy');
-
-console.log('bookedBy');
-console.log(bookedBy);
 
 			if (updatedStatus === 'available') {
 				if (previousStatus === 'tentative' || previousStatus === 'booked') {
@@ -99,13 +98,24 @@ console.log(bookedBy);
 				if (bookedBy === 'buyer') {
 					this.$el.addClass('is-booked').removeClass('is-available');	
 				} else if (bookedBy === 'seller') {
-					console.log('booked by seller')
 					this.close();	
 				}
 			} else if (updatedStatus === 'tentative') {
 				this.$el.addClass('is-tentative').removeClass('is-available');	
 			}
 		}
+	},
+
+	//+++++++++++++++++++++++++++++++++++++++++
+	//+ Verify slot
+	//+++++++++++++++++++++++++++++++++++++++++
+	
+	//Check model still exists in remote collection before booking
+	verifySlot: function( e ){
+		var self = this;
+		this.model.verify(function(){
+			self.showEditView(e);
+		});
 	},
 
 	//+++++++++++++++++++++++++++++++++++++++++
@@ -126,7 +136,7 @@ console.log(bookedBy);
 			this.parentView.editView = new gumCal.BookingView( viewSettings );	
 		} else if ( view ) {
 			this.parentView.editView = new gumCal.DetailsView( viewSettings );	
-		}
+		}	
 	}
 	
 });

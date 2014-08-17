@@ -71,7 +71,8 @@ gumCal.BookingView = Backbone.View.extend({
 	
 	bookSlot: function(e){
 		e.preventDefault();
-		var attr = {
+		var self = this,
+			attr = {
 			name: this.$('[id^="name-"]').val(),
 			phone: this.$('[id^="phone-"]').val(),
 			email: this.$('[id^="email-"]').val(),
@@ -79,7 +80,12 @@ gumCal.BookingView = Backbone.View.extend({
 			bookedBy: this.context,
 		};
 		
-		this.model.bookSlot(attr, this.context);
+		this.model.verify(function(){
+			self.model.bookSlot(attr, self.context);	
+		}, function(){
+			self.$el.find('[data-book-submit]').prop('disabled', true);
+		});
+		
 	},
 	
 	//+++++++++++++++++++++++++++++++++++++++++

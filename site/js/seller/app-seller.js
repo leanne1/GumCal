@@ -79,13 +79,10 @@ $(function(){
 	initSlots = function( settings ){
 		var adId = settings.adId;
 			
-		//TODO: initialising with new empry array literal yokes the two seller-side cal collections
-		//If need to do the above, try to do with empty array
 		slots[adId] = new gumCal.Slots(adId);
 		
-		///TODO: uncomment when using RESTful API
+		///TODO: When using RESTful API, change this to be actual url
 		slots[adId].url = '/api/v1/123456789/cal/slots';
-		//slots[adId].url = '/api/v1/' + adId + '/cal/slots';
 		slots[adId].fetch({ reset: true });
 
 		cals[adId] = initCalView(settings, slots[adId]);

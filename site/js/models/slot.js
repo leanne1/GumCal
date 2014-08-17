@@ -34,6 +34,25 @@ gumCal.Slot = Backbone.Model.extend({
 	},
 
 	//+++++++++++++++++++++++++++++++++++++++++
+	//+ Verify model
+	//+++++++++++++++++++++++++++++++++++++++++
+	
+	//Check model exists in remote collection before running a callback
+	verify: function(success, error){
+		this.fetch({
+			//Model exists in remote collection, run the callback
+			success:function(){
+				success && success();
+			},
+			//Model does not exist in remote collection
+			error:function(){
+				error && error();
+				return;
+			}
+		});
+	},
+
+	//+++++++++++++++++++++++++++++++++++++++++
 	//+ Cancel slot
 	//+++++++++++++++++++++++++++++++++++++++++
 	
@@ -63,7 +82,10 @@ gumCal.Slot = Backbone.Model.extend({
 	//+++++++++++++++++++++++++++++++++++++++++
 
 	setAttributes: function( attr ){
-		this.set( attr );
-		this.save({wait:true, patch:true});
+		var self = this;
+		this.verify(function(){
+			self.set( attr );
+			self.save({wait:true, patch:true});	
+		});
 	}
 });
