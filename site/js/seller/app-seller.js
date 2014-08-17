@@ -16,7 +16,7 @@ $(function(){
 		var submitBtn = el.querySelector('[data-cal-submit]'),
 			myCalTab = document.querySelector('[data-cal-tab="'+ adId +'"]')
 		;
-		
+
 		//Instantiate jQuery date-pickers on date inputs
 		$('#date-from-' + adId).datepicker({
 	        dateFormat: 'yy-mm-dd'
@@ -31,11 +31,7 @@ $(function(){
 			initCal(e, adId, el);
 			
 		});
-		myCalTab.addEventListener('click', function( e ){
-			initCal(e, adId, el);
-		});
-		//TODO: add an eventlister to the 'my cal' tab if source data-has-cal ==== true
-
+	
 	};	
 
 	//+++++++++++++++++++++++++++++++++++++++++
@@ -98,7 +94,7 @@ $(function(){
 			options = { settings: settings, collection: collection },
 			calView = new gumCal.CalView( options );
 			$cal.append(calView.render().el);
-
+			
 		return calView;
 	};
 

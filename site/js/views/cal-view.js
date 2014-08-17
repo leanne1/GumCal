@@ -5,6 +5,8 @@ gumCal.CalView = Backbone.View.extend({
 	
 	tagName: 'div',
 
+	className: 'panel-body',
+
 	calTemplate: Handlebars.compile($("#calview-template").html()),
 	
 	events: {

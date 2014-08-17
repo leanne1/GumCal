@@ -56,9 +56,25 @@ button {
 /*++++++++++++++++++++++++++++
 //  Panels
 ++++++++++++++++++++++++++++*/
+.panel-body > h2 {
+    margin: 0 0 20px 0;
+}
+
 .panel-heading > h3 {
     margin: 0 0 5px 0;
-    float: left;
+    &.set-left{
+        float: left;    
+    }
+}
+
+.panel-heading .h4 {
+    margin: 5px 0;
+}
+
+.glyphicon-calendar {
+    top:3px;
+    left: 4px;
+    margin-right: 5px;
 }
 
 /*++++++++++++++++++++++++++++
@@ -90,7 +106,16 @@ button {
 .alert {
     margin-bottom: 0;
 }
-
+.glyphicon {
+    top: 4px;
+    font-size: 18px;
+    opacity: 0.8;
+    margin-right: 5px;
+}
+.glyphicon-auto {
+    opacity: 1;
+    font-size: inherit;
+}
 /*++++++++++++++++++++++++++  
 // Badges
 ++++++++++++++++++++++++++++*/
@@ -114,7 +139,6 @@ button {
     width: 100%;
     margin: 0;
     padding: 0;
-    margin-bottom: 20px;
 }
 .cal-month > li {
     border: solid grey 1px;
@@ -266,6 +290,3 @@ button {
 /*++++++++++++++++++++++++++++
 //	Settings form
 ++++++++++++++++++++++++++++*/
-.cal-config {
-    margin-top: 40px;
-}
