@@ -21,7 +21,7 @@ button {
 body {
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.4em;
-  background: #eaeaea url("../images/bg.png");
+  background-color: white;
   color: #4d4d4d;
   width: 70%;
   margin: 0 auto;
@@ -47,6 +47,37 @@ button {
 .txt-capitalise {
   text-transform: capitalize; }
 
+/*++++++++++++++++++++++++++++
+//  Panels
+++++++++++++++++++++++++++++*/
+.panel-heading > h3 {
+  margin: 0 0 5px 0;
+  float: left; }
+
+/*++++++++++++++++++++++++++++
+//  Pagiantion
+++++++++++++++++++++++++++++*/
+.pagination {
+  margin: 0; }
+  .panel-heading .pagination {
+    float: right;
+    margin-top: -3px; }
+
+.pagination > li > span:hover {
+  cursor: pointer; }
+
+.success-notification {
+  display: block; }
+
+.success-notification.hidden {
+  display: none; }
+
+/*++++++++++++++++++++++++++  
+// Alerts
+++++++++++++++++++++++++++++*/
+.alert {
+  margin-bottom: 0; }
+
 /*++++++++++++++++++++++++++  
 // Badges
 ++++++++++++++++++++++++++++*/
@@ -68,7 +99,8 @@ button {
 .cal-month {
   width: 100%;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  margin-bottom: 20px; }
 
 .cal-month > li {
   border: solid grey 1px;
@@ -107,12 +139,12 @@ button {
 //	Day view 
 ++++++++++++++++++++++++++++*/
 .cal-day {
-  border-top: solid 1px grey;
+  border-top: solid 1px #bbb;
   list-style-type: none;
   padding-left: 0; }
 
 .cal-day > li {
-  border-bottom: solid grey 1px;
+  border-bottom: solid #bbb 1px;
   padding: 10px 5px;
   position: relative; }
 
@@ -149,10 +181,12 @@ button {
 
 .is-available {
   background-color: #428bca;
-  cursor: pointoggleCancelAllBtnter; }
+  color: #d9edf7;
+  cursor: pointer; }
 
 /* Seller styles */
 .seller.is-booked {
+  color: #dff0d8;
   background-color: #5cb85c; }
 
 .seller.is-available {
@@ -163,6 +197,7 @@ button {
   cursor: default; }
 
 .seller.is-tentative {
+  color: #fcf8e3;
   background-color: #f0ad4e; }
 
 /* Buyer styles */
@@ -179,18 +214,6 @@ button {
 
 .buyer.is-booked:after {
   content: 'Booking confirmed'; }
-
-.buyer strong {
-  font-weight: normal; }
-
-/*++++++++++++++++++++++++++++
-//	Modals
-++++++++++++++++++++++++++++*/
-.success-notification {
-  display: block; }
-
-.success-notification.hidden {
-  display: none; }
 
 /*++++++++++++++++++++++++++++
 //	Clearfix
