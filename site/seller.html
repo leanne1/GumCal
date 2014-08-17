@@ -455,18 +455,21 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Cancel all</h4>
+                    <h3 class="modal-title" id="myModalLabel">Cancel all</h3>
                 </div>
                 <div class="modal-body">
-                    <p>You have <strong>{{bookedCount}}</strong> booked appointments, <strong>{{tentativeCount}}</strong> appointments awaiting confirmation,
-                    and <strong>{{slotCount}}</strong> available slots in your calendar.</p>
-                    <h3 class="h4">What would you like to do?</h2>
-                    <ul>
-                        <li>
+                    <div class="well well-sm">
+                        You have <strong>{{bookedCount}}</strong> booked appointments, <strong>{{tentativeCount}}</strong> appointments awaiting confirmation, and <strong>{{slotCount}}</strong> available slots in your calendar
+                    </div>
+                    <h3>What would you like to do?</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
                             <p>Cancel all booked and pending appointments and <strong>close</strong> all available slots in your calendar</p>
-                            <button type="button" class="btn btn-danger" data-cancel-all-close><strong>Close</strong> all slots</button>
+                            <button type="button" class="btn btn-danger" data-cancel-all-close>
+                                Cancel and <strong>close</strong> slots
+                            </button>
                         </li>
-                        <li>
+                        <li class="list-group-item">
                             <p>Cancel all booked and pending appointments and <strong>keep open</strong> all available slots in your calendar</p>
                             <button type="button" class="btn btn-danger" data-cancel-all-keep{{#ifCondition activeSlots false}} disabled{{/ifCondition}}>
                                 Cancel and <strong>keep</strong> slots

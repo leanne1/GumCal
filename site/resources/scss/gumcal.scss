@@ -116,8 +116,14 @@ button {
     opacity: 1;
     font-size: inherit;
 }
-.modal-body .well {
-    margin-bottom: 0;
+.modal-body {
+    .well {
+        margin-bottom: 0;
+    }    
+    
+    .list-group {
+        margin-bottom: 10px;
+    }
 
     &+.alert{
         margin-top: 10px;
@@ -228,7 +234,8 @@ button {
     right: 0;
     bottom: 0;
     left: 0;
-    padding: 0 5px;
+    padding: 3px 5px 0;
+    line-height: 16px;
     color: white;
 }
 
@@ -239,7 +246,7 @@ button {
 .is-available {
     background-color: #428bca;
     color: #d9edf7;
-    cursor: pointer;
+    cursor: default;
 }
 
 /* Seller styles */
@@ -247,6 +254,7 @@ button {
 .seller.is-booked {
     color: #dff0d8;
     background-color: #5cb85c;
+    cursor: default;
 }
 
 .seller.is-available {
@@ -261,6 +269,7 @@ button {
 .seller.is-tentative {
     color: #fcf8e3;
     background-color: #f0ad4e;
+    cursor: default;
 }
 
 /* Buyer styles */
@@ -279,7 +288,11 @@ button {
 .buyer.is-booked:after {
     content: 'Booking confirmed';
 }
-
+[data-view-slot]:hover,
+[data-book-slot]:hover,
+[data-delete-slot]:hover {
+    cursor: pointer;
+}
 
 /*++++++++++++++++++++++++++++
 //	Clearfix
