@@ -184,8 +184,10 @@ gumCal.DayView = Backbone.View.extend({
 		var updatedStatus = slot.get('status'),
 			previousStatus = slot.previous('status')
 			;
-		if (this.context === 'buyer' && updatedStatus === 'available' && previousStatus === 'booked') {
-			this.appendOneSlot(slot);
+		if (this.context === 'buyer' && updatedStatus === 'available') {
+			if (previousStatus === 'booked' || previousStatus === 'tentative') {
+				this.appendOneSlot(slot);
+			}
 		}	
 	},
 

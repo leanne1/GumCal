@@ -85,9 +85,9 @@ gumCal.SlotView = Backbone.View.extend({
 			this.render();
 		} else {
 			updatedStatus = slot.get('status');
-			if (updatedStatus === 'available' || updatedStatus === 'tentative') {
+			if (updatedStatus === 'available') {
 				this.render();
-			} else if (updatedStatus === 'booked') {
+			} else if (updatedStatus === 'booked' || updatedStatus === 'tentative') {
 				this.close();
 			}
 		}

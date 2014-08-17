@@ -14,7 +14,8 @@ gumCal.Slot = Backbone.Model.extend({
 	idAttribute: '_id',
 	
 	initialize: function(options){
-
+		this.calSettings = options || {};
+		this.autoConfirm = this.calSettings.autoConfirm;
 	},
 	
 	//+++++++++++++++++++++++++++++++++++++++++
