@@ -39,6 +39,9 @@ gumCal.BookingView = Backbone.View.extend({
 		
 		//Show success notification when slot booked
 		this.listenTo(this.model, 'change:status', this.showNotification);
+		
+		//Remove booking modal if slot is removed during a booking attempt
+		this.listenTo(this.model, 'remove', this.close)
 
 	},
 	
@@ -82,12 +85,10 @@ gumCal.BookingView = Backbone.View.extend({
 		
 		this.model.verify(function(){
 			self.model.bookSlot(attr, self.context);	
-		}, function(){
-			self.$el.find('[data-book-submit]').prop('disabled', true);
 		});
 		
 	},
-	
+		
 	//+++++++++++++++++++++++++++++++++++++++++
 	//+ Show notfication
 	//+++++++++++++++++++++++++++++++++++++++++
@@ -95,6 +96,13 @@ gumCal.BookingView = Backbone.View.extend({
 	showNotification: function(){
 		this.$('.success-notification').removeClass('hidden');
 		this.$('[data-book-submit]').prop('disabled', true);
-	}
+	},
 
+	//+++++++++++++++++++++++++++++++++++++++++
+	//+ Close modal view
+	//+++++++++++++++++++++++++++++++++++++++++
+	
+	close: function(){
+		this.$el.find('[data-dismiss="modal"]').click();
+	}
 });

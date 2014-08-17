@@ -46,7 +46,12 @@ button {
 .btn-primary[disabled] {
     color: white;
 }
-
+/*++++++++++++++++++++++++++  
+// Utils
+++++++++++++++++++++++++++++*/
+.txt-capitalise {
+    text-transform: capitalize;
+}
 /*++++++++++++++++++++++++++  
 // Badges
 ++++++++++++++++++++++++++++*/
@@ -160,18 +165,18 @@ button {
 }
 
 .is-available {
-    background-color: #5cb85c;
+    background-color: #428bca;
     cursor: pointoggleCancelAllBtnter;
 }
 
 /* Seller styles */
 
 .seller.is-booked {
-    background-color: #428bca;
+    background-color: #5cb85c;
 }
 
 .seller.is-available {
-    background-color: #5cb85c;
+    background-color: #428bca;
 }
 
 .seller.is-past {
@@ -187,18 +192,17 @@ button {
 .buyer.is-booked,
 .buyer.is-tentative {
     background-color: #cccccc;
-    
+    color: #999;
+
     [data-book-slot]{
         display: none;
     }
 }
 .buyer.is-tentative:after {
     content: 'Awaiting confirmation';
-    color: #999;
 }
 .buyer.is-booked:after {
     content: 'Booking confirmed';
-    color: #999;
 }
 
 

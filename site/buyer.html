@@ -52,10 +52,10 @@
             </div>    
             <ul class="list-group">
                 <li class="list-group-item">
-                    Available slots <span class="badge badge-success">{{liveSlotCount}}</span>
+                    Available slots <span class="badge badge-info">{{liveSlotCount}}</span>
                 </li>
                 <li class="list-group-item">
-                    Booked slots <span class="badge badge-info">{{liveBookedCount}}</span>
+                    Booked slots <span class="badge badge-success">{{liveBookedCount}}</span>
                 </li>
                 {{#ifCondition autoConfirm false}}
                     <li class="list-group-item">
@@ -85,16 +85,16 @@
             {{this.[0]}}
             {{#ifNotEquals this.[3] 0}}
                 {{#ifCondition ../../context 'seller'}}    
-                    <span class="badge badge-success">{{this.[3]}}</span>
+                    <span class="badge badge-info">{{this.[3]}}</span>
                 {{else}}
                     {{#ifCondition this.[4] false}}        
-                        <span class="badge badge-success">{{this.[3]}}</span>
+                        <span class="badge badge-info">{{this.[3]}}</span>
                     {{/ifCondition}}           
                 {{/ifCondition}}      
             {{/ifNotEquals}}    
             {{#ifCondition ../context 'seller'}}    
                 {{#ifNotEquals this.[1] 0}}
-                    <span class="badge badge-info">{{this.[1]}}</span>
+                    <span class="badge badge-success">{{this.[1]}}</span>
                 {{/ifNotEquals}}        
                 {{#ifNotEquals this.[2] 0}}
                     <span class="badge badge-warning">{{this.[2]}}</span>
