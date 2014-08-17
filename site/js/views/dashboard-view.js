@@ -35,7 +35,7 @@ gumCal.DashboardView = Backbone.View.extend({
 	//+ Render
 	//+++++++++++++++++++++++++++++++++++++++++
 	
-	render: function(){
+	render: function(){	
 		this.$el.html(this.dashboardTemplate({
 			liveBookedCount: this.liveBookedSlots.length,
 			liveSlotCount: this.liveAvailableSlots.length,
@@ -43,7 +43,7 @@ gumCal.DashboardView = Backbone.View.extend({
 			locationPrivate: this.locationPrivate,
 			autoConfirm: this.autoConfirm,
 			location: this.location,
-			isEmpty: !this.collection.length 
+			isLiveEmpty: !this.collection.filterByLive().length
 		}));
 	},
 

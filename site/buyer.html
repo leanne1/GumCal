@@ -64,7 +64,7 @@
                 {{/ifCondition}}     
             </ul>
             <div class="panel-footer">
-                <button type="button" class="btn btn-danger" data-cancel-all {{#ifCondition isEmpty true}}disabled{{/ifCondition}}>
+                <button type="button" class="btn btn-danger" data-cancel-all {{#ifCondition isLiveEmpty true}}disabled{{/ifCondition}}>
                     Cancel all
                 </button>
             </div>
@@ -191,13 +191,12 @@
                         {{#ifCondition context 'seller'}}
                             <div class="" role="alert">  
                                 <strong>Booking confirmed!</strong>
-                                    Thanks, this booking has now been confirmed and <strong>{{name}}</strong> 
-                                    has been notified by email at <strong>{{email}}</strong>
+                                    Thanks, this booking has now been confirmed and the attendee has been notified by email
                             </div>
                         {{/ifCondition}} 
                         {{#ifCondition context 'buyer'}}
                             {{#ifCondition autoConfirm true}}
-                                <p>Thanks, your booking is confirmed and the ad poster has been notified</p>
+                                <p>Thanks, your booking is confirmed and the ad poster has been notified by email</p>
                             {{else}}   
                                 <p>
                                     Thanks, the ad poster has been notified of your booking and will be in touch shortly
@@ -295,7 +294,7 @@
             </div>
         </div>
     </div>    
-</script>  
+</script> 
 
 		<script src="js/lib/jquery-1.11.1.js"></script>
         <script src="js/lib/jquery-ui.min.js"></script>
@@ -312,7 +311,6 @@
         <script src="js/views/day-view.js"></script>
 		<script src="js/views/booking-view.js"></script>
         <script src="js/views/slot-view.js"></script>
-        <script src="js/views/slot-notification-view.js"></script>
         <script src="js/views/detail-view.js"></script>
         <script src="js/views/cancel-all-view.js"></script>
 		<script src="js/buyer/app-buyer.js"></script>
@@ -326,7 +324,7 @@
                 endDate: '2014-08-31',
                 location: 'Whittakers',
                 locationPrivate: false,
-                msgRequired: false,
+                msgRequired: true,
                 msgSubject: 'Why are you awesome?',
                 autoConfirm: false
             };

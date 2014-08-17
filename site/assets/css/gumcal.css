@@ -160,14 +160,20 @@ button {
   background-color: #f0ad4e; }
 
 /* Buyer styles */
+.buyer.is-booked,
+.buyer.is-tentative {
+  background-color: #cccccc; }
+  .buyer.is-booked [data-book-slot],
+  .buyer.is-tentative [data-book-slot] {
+    display: none; }
+
 .buyer.is-tentative:after {
   content: 'Awaiting confirmation';
   color: #999; }
 
-.buyer.is-tentative {
-  background-color: #cccccc; }
-  .buyer.is-tentative [data-book-slot] {
-    display: none; }
+.buyer.is-booked:after {
+  content: 'Booking confirmed';
+  color: #999; }
 
 .buyer strong {
   font-weight: normal; }

@@ -184,11 +184,7 @@ button {
 }
 
 /* Buyer styles */
-.buyer.is-tentative:after {
-    content: 'Awaiting confirmation';
-    color: #999;
-}
-
+.buyer.is-booked,
 .buyer.is-tentative {
     background-color: #cccccc;
     
@@ -196,6 +192,15 @@ button {
         display: none;
     }
 }
+.buyer.is-tentative:after {
+    content: 'Awaiting confirmation';
+    color: #999;
+}
+.buyer.is-booked:after {
+    content: 'Booking confirmed';
+    color: #999;
+}
+
 
 .buyer strong {
     font-weight: normal;

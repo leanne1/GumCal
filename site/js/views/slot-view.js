@@ -19,6 +19,7 @@ gumCal.SlotView = Backbone.View.extend({
 		//Cache cal setting properties
 		this.adId = this.calSettings.adId;
 		this.parentView = this.calSettings.parentView;
+		this.autoConfirm = this.calSettings.autoConfirm;
 		this.context = this.calSettings.context;
 		this.collection = gumCal.Cals[this.adId].slots;
 
@@ -77,20 +78,22 @@ gumCal.SlotView = Backbone.View.extend({
 		//TODO: Update notification panel on booked - remove name or find another way to do this
 		var updatedStatus, previousStatus;
 		if(this.context === 'seller'){
+			//Seller side slot view updates
 			this.render();
 		} else {
+			//Buyer side slot view updates
 			updatedStatus = slot.get('status');
 			previousStatus = slot.previous('status');
 
 			if (updatedStatus === 'available') {
-				if (previousStatus === 'tentative') {
+				if (previousStatus === 'tentative' || previousStatus === 'booked') {
 					this.close();		
 				}
 				this.render();
 			} else if (updatedStatus === 'booked') {
-				this.close();
+				this.$el.addClass('is-booked').removeClass('is-available');	
 			} else if (updatedStatus === 'tentative') {
-				this.$el.addClass('is-tentative').removeClass('is-available');		
+				this.$el.addClass('is-tentative').removeClass('is-available');	
 			}
 		}
 	},
