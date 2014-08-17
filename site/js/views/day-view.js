@@ -172,17 +172,17 @@ gumCal.DayView = Backbone.View.extend({
 			slots = this.collection.filterByDate(this.date),
 			availableSlots = this.collection.filterByStatus.call(slots, 'available')
 			;
-		
 		if (this.context === 'seller') {
 			//Seller cal - append all slots types for this date
 			_.each(slots, function(slot){
 				self.appendOneSlot(slot);
-			});	
+			});
 		} else {
 			//Buyer cal - append only available slots for this date
 			_.each(availableSlots, function(slot){
 				self.appendOneSlot(slot);
-			});	
+			});
+
 		}
 	},
 
@@ -196,8 +196,7 @@ gumCal.DayView = Backbone.View.extend({
 			previousStatus = slot.previous('status')
 			;
 		if (this.context === 'buyer' && updatedStatus === 'available') {
-			if(previousStatus === 'booked' || previousStatus === 'tentative'){
-				this.parentView.slotNotificationView && this.parentView.slotNotificationView.close();
+			if (previousStatus === 'booked' || previousStatus === 'tentative') {
 				this.appendOneSlot(slot);
 			}
 		}	

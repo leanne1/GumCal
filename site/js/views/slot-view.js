@@ -85,9 +85,6 @@ gumCal.SlotView = Backbone.View.extend({
 			if (updatedStatus === 'available') {
 				this.render();
 			} else if (updatedStatus === 'booked' || updatedStatus === 'tentative') {
-				this.parentView.slotNotificationView = new gumCal.SlotNotificationView({
-					slot: slot
-				})
 				this.close();
 			}
 		}
