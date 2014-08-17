@@ -114,6 +114,16 @@ button {
 .cal-day.is-past li {
   cursor: default; }
 
+.cal-day > .alert {
+  margin-bottom: 0;
+  padding-top: 5px; }
+
+.cal-day > .alert-warning {
+  border-color: #faebcc; }
+
+.cal-day > .alert-success {
+  border-color: #d6e9c6; }
+
 /*++++++++++++++++++++++++++++
 //	Slots
 ++++++++++++++++++++++++++++*/

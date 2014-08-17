@@ -14,7 +14,8 @@ gumCal.Slot = Backbone.Model.extend({
 	idAttribute: '_id',
 	
 	initialize: function(options){
-
+		this.calSettings = options || {};
+		this.autoConfirm = this.calSettings.autoConfirm;
 	},
 	
 	//+++++++++++++++++++++++++++++++++++++++++
@@ -22,6 +23,8 @@ gumCal.Slot = Backbone.Model.extend({
 	//+++++++++++++++++++++++++++++++++++++++++
 
 	bookSlot: function(attr, context){
+		console.log('this.autoConfirm')
+		console.log(this.autoConfirm)
 		if ( (context === 'seller') || (context === 'buyer' && this.autoConfirm) ) {
 			attr.status = 'booked';
 		} else if ( context === 'buyer' && !this.autoConfirm ) {

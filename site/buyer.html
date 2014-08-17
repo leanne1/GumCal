@@ -148,6 +148,11 @@
     {{/ifCondition}} 
 </script>
 
+<script id="slotNotificationView-template" type="text/x-handlebars-template">
+  {{prettyTime}}<br>
+  <strong>Your appointment</strong>: {{status}}
+</script>
+
 <script id="bookingview-template" type="text/x-handlebars-template">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -304,7 +309,6 @@
         <script src="js/lib/handlebars-helpers.js"></script>
 		<script src="js/lib/underscore.js"></script>
         <script src="js/lib/backbone.js"></script>
-        <script src="js/lib/backbone.localStorage.js"></script>
         <script src="js/models/slot.js"></script>
 		<script src="js/collections/slots.js"></script>
 		<script src="js/views/cal-view.js"></script>
@@ -313,6 +317,7 @@
         <script src="js/views/day-view.js"></script>
 		<script src="js/views/booking-view.js"></script>
         <script src="js/views/slot-view.js"></script>
+        <script src="js/views/slot-notification-view.js"></script>
         <script src="js/views/detail-view.js"></script>
         <script src="js/views/cancel-all-view.js"></script>
 		<script src="js/buyer/app-buyer.js"></script>
@@ -328,7 +333,7 @@
                 locationPrivate: false,
                 msgRequired: false,
                 msgSubject: 'Why are you awesome?',
-                autoConfirm: false
+                autoConfirm: true
             };
 
             //  gumCal.config = {

@@ -63,21 +63,18 @@ gumCal.SlotView = Backbone.View.extend({
 	
 	//Delete slot model
 	deleteSlot: function(){
-		console.log('delete slot from slotview');
 		this.model.destroy();
 	},
 
 	//Remove slot view
 	close: function(){
-		console.log('close called from slotview');
 		this.remove();
 	},
 
 	//Handling of slot view rendering or removal on slot status change
 	//according to new status and whether view is buyer or seller
 	updateSlotView: function(slot){
-		
-		//TODO: When page renders on init, booked slots render on buyer side
+
 		//TODO: Update notification panel on booked - remove name or find another way to do this
 
 		var updatedStatus;
@@ -85,9 +82,12 @@ gumCal.SlotView = Backbone.View.extend({
 			this.render();
 		} else {
 			updatedStatus = slot.get('status');
-			if (updatedStatus === 'available' || updatedStatus === 'tentative') {
+			if (updatedStatus === 'available') {
 				this.render();
-			} else if (updatedStatus === 'booked') {
+			} else if (updatedStatus === 'booked' || updatedStatus === 'tentative') {
+				new gumCal.SlotNotificationView({
+					slot: slot
+				})
 				this.close();
 			}
 		}
