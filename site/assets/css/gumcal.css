@@ -166,6 +166,8 @@ button {
 
 .buyer.is-tentative {
   background-color: #cccccc; }
+  .buyer.is-tentative [data-book-slot] {
+    display: none; }
 
 .buyer strong {
   font-weight: normal; }

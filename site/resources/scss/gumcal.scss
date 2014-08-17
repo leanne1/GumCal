@@ -191,6 +191,10 @@ button {
 
 .buyer.is-tentative {
     background-color: #cccccc;
+    
+    [data-book-slot]{
+        display: none;
+    }
 }
 
 .buyer strong {

@@ -9,7 +9,7 @@ gumCal.SlotView = Backbone.View.extend({
 	
 	events: {
 		'click [data-delete-slot]' : 'deleteSlot',
-		'click [data-book-slot]' : 'bookSlot',
+		'click [data-book-slot]' : 'showEditView',
 		'click [data-view-slot]' : 'showEditView'
 	},
 	
@@ -74,36 +74,24 @@ gumCal.SlotView = Backbone.View.extend({
 	//Handling of slot view rendering or removal on slot status change
 	//according to new status and whether view is buyer or seller
 	updateSlotView: function(slot){
-
 		//TODO: Update notification panel on booked - remove name or find another way to do this
-
-		var updatedStatus;
+		var updatedStatus, previousStatus;
 		if(this.context === 'seller'){
 			this.render();
 		} else {
 			updatedStatus = slot.get('status');
+			previousStatus = slot.previous('status');
+
 			if (updatedStatus === 'available') {
+				if (previousStatus === 'tentative') {
+					this.close();		
+				}
 				this.render();
-			} else if (updatedStatus === 'booked' || updatedStatus === 'tentative') {
+			} else if (updatedStatus === 'booked') {
 				this.close();
+			} else if (updatedStatus === 'tentative') {
+				this.$el.addClass('is-tentative').removeClass('is-available');		
 			}
-		}
-	},
-
-	//+++++++++++++++++++++++++++++++++++++++++
-	//+ Book slot
-	//+++++++++++++++++++++++++++++++++++++++++
-
-	bookSlot: function( e ){
-		if (this.context === 'buyer') {
-			if (!this.parentView.slotBooked) {
-				this.parentView.slotBooked = true;
-				this.showEditView( e );
-			} else {
-				return false;
-			}
-		} else {
-			this.showEditView( e );
 		}
 	},
 
