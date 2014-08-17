@@ -43,7 +43,6 @@ var Slot = new mongoose.Schema({
     message: String,
     msgSubject: String,
     name: String,
-    patch: String,
     phone: String,
     prettyDate: String,
     prettyTime: String,

@@ -9,7 +9,7 @@ gumCal.SlotView = Backbone.View.extend({
 	
 	events: {
 		'click [data-delete-slot]' : 'deleteSlot',
-		'click [data-book-slot]' : 'showEditView',
+		'click [data-book-slot]' : 'bookSlot',
 		'click [data-view-slot]' : 'showEditView'
 	},
 	
@@ -85,11 +85,28 @@ gumCal.SlotView = Backbone.View.extend({
 			if (updatedStatus === 'available') {
 				this.render();
 			} else if (updatedStatus === 'booked' || updatedStatus === 'tentative') {
-				new gumCal.SlotNotificationView({
+				this.parentView.slotNotificationView = new gumCal.SlotNotificationView({
 					slot: slot
 				})
 				this.close();
 			}
+		}
+	},
+
+	//+++++++++++++++++++++++++++++++++++++++++
+	//+ Book slot
+	//+++++++++++++++++++++++++++++++++++++++++
+
+	bookSlot: function( e ){
+		if (this.context === 'buyer') {
+			if (!this.parentView.slotBooked) {
+				this.parentView.slotBooked = true;
+				this.showEditView( e );
+			} else {
+				return false;
+			}
+		} else {
+			this.showEditView( e );
 		}
 	},
 

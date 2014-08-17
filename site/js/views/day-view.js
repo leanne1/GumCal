@@ -197,6 +197,7 @@ gumCal.DayView = Backbone.View.extend({
 			;
 		if (this.context === 'buyer' && updatedStatus === 'available') {
 			if(previousStatus === 'booked' || previousStatus === 'tentative'){
+				this.parentView.slotNotificationView && this.parentView.slotNotificationView.close();
 				this.appendOneSlot(slot);
 			}
 		}	
