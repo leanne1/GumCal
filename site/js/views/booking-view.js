@@ -86,7 +86,6 @@ gumCal.BookingView = Backbone.View.extend({
 	//+++++++++++++++++++++++++++++++++++++++++
 
 	showNotification: function(){
-		this.render();
 		this.$('.success-notification').removeClass('hidden');
 		this.$('[data-book-submit]').prop('disabled', true);
 	}

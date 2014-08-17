@@ -40,11 +40,11 @@ gumCal.DayView = Backbone.View.extend({
 		//New slot added to collection - render its subview to day view
 		this.listenTo(this.collection, 'add', this.appendOneSlot);
 
-		//Day view (this) removed - remove all slot subviews
-		this.listenTo(this.parentView, 'closeDayView', this.close);
+		//Check if a prevously closed slot needs to be re-appended to day view on buyer side
+		this.listenTo(this.collection, 'change:status', this.checkSlotPreviousStatus);
 
-		//Close view
-		this.listenTo(this.parentView, 'calViewClosed', this.close);
+		//Day view (this) or cal view removed - remove all slot subviews
+		this.listenTo(this.parentView, 'calViewClosed closeDayView', this.close);
 	},
 
 	//+++++++++++++++++++++++++++++++++++++++++
@@ -123,6 +123,7 @@ gumCal.DayView = Backbone.View.extend({
 	//+ Create new slot
 	//+++++++++++++++++++++++++++++++++++++++++
 
+	//Create a slot when slot placeholder clicked
 	createSlot: function( e ){
 		var slotIndex = parseInt(e.target.getAttribute('data-cal-slot')),
 			slotTime = e.target.getAttribute('data-cal-datetime'), 
@@ -172,6 +173,20 @@ gumCal.DayView = Backbone.View.extend({
 		_.each(slots, function(slot){
 			self.appendOneSlot(slot);
 		});
+	},
+
+	//+++++++++++++++++++++++++++++++++++++++++
+	//+ Check a slot with changed status
+	//+++++++++++++++++++++++++++++++++++++++++
+	
+	//Re-append an available slot to buyer side if it has been booked and removed previously
+	checkSlotPreviousStatus: function(slot){
+		var updatedStatus = slot.get('status'),
+			previousStatus = slot.previous('status')
+			;
+		if (this.context === 'buyer' && updatedStatus === 'available' && previousStatus === 'booked') {
+			this.appendOneSlot(slot);
+		}	
 	},
 
 	//++++++++++++++++++++++++++++++++++++
