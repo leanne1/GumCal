@@ -85,7 +85,7 @@ button {
   display: none; }
 
 /*++++++++++++++++++++++++++  
-// Alerts
+// Alerts and wells
 ++++++++++++++++++++++++++++*/
 .alert {
   margin-bottom: 0; }
@@ -94,11 +94,16 @@ button {
   top: 4px;
   font-size: 18px;
   opacity: 0.8;
-  margin-right: 5px; }
+  margin-right: 3px; }
 
 .glyphicon-auto {
   opacity: 1;
   font-size: inherit; }
+
+.modal-body .well {
+  margin-bottom: 0; }
+  .modal-body .well + .alert {
+    margin-top: 10px; }
 
 /*++++++++++++++++++++++++++  
 // Badges
@@ -130,7 +135,7 @@ button {
   list-style-type: none;
   padding: 10px;
   width: 14.2857142857143%;
-  height: 50px;
+  height: 60px;
   overflow: hidden;
   cursor: pointer; }
 

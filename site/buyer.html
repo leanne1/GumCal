@@ -20,16 +20,18 @@
     <body>
 		<section id="calendar" class="is-buyer"></section><!-- cal view el -->
         
-        <script id="calview-template" type="text/x-handlebars-template">
-        <h2 class="h3">
-            <span class="glyphicon glyphicon-calendar glyphicon-auto"></span>
-            {{startDate}} - {{endDate}}
-        </h2>
-        {{#ifCondition context 'seller'}}
-            <div data-view="dashboard" class="panel panel-default"></div>
-        {{/ifCondition}}     
-        <div data-view="month"></div>
-        <div data-view="day"></div>
+    <script id="calview-template" type="text/x-handlebars-template">
+        <div class="panel-body">
+            <h2 class="h3">
+                <span class="glyphicon glyphicon-calendar glyphicon-auto"></span>
+                {{startDate}} - {{endDate}}
+            </h2>
+            {{#ifCondition context 'seller'}}
+                <div data-view="dashboard" class="panel panel-default"></div>
+            {{/ifCondition}}     
+            <div data-view="month"></div>
+            <div data-view="day"></div>
+        </div>    
     </script>   
 
     <script id="dashboardview-template" type="text/x-handlebars-template">
@@ -162,65 +164,85 @@
         {{/ifCondition}} 
     </script>
 
-
     <script id="bookingview-template" type="text/x-handlebars-template">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Book appointment - {{prettyDate}}: {{prettyTime}}</h4>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <label for="name-{{adId}}">Name:</label>
-                        <input type="text" id="name-{{adId}}">
-
-                        <label for="email-{{adId}}">Email:</label>
-                        <input type="email" id="email-{{adId}}">
-
-                        <label for="phone-{{adId}}">Phone:</label>
-                        <input type="tel" id="phone-{{adId}}">
-
+                <form>
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h3 class="modal-title" id="myModalLabel">Book appointment</h3>
+                        <h4>{{prettyDate}}: {{prettyTime}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">        
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="name-{{adId}}">Name:</label>
+                                    <input type="text" class="form-control" id="name-{{adId}}">
+                                </div>    
+                            </div>  
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="email-{{adId}}">Email:</label>
+                                    <input type="email" id="email-{{adId}}" class="form-control">
+                                </div>    
+                            </div> 
+                        </div>
+                        <div class="row">        
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="phone-{{adId}}">Phone:</label>
+                                    <input type="tel" id="phone-{{adId}}" class="form-control">
+                                </div>    
+                            </div>  
+                        </div>
                         {{#ifCondition msgRequired true}}
-                            <label for="msg-{{adId}}">{{msgSubject}}:</label>
-                            <textarea id="msg-{{adId}}"></textarea>
+                            <div class="row">        
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="msg-{{adId}}">{{msgSubject}}:</label>
+                                        <textarea id="msg-{{adId}}" class="form-control"></textarea>
+                                    </div>    
+                                </div>  
+                            </div>
                         {{/ifCondition}} 
-
                         {{#ifCondition context 'buyer'}}
-                            {{#ifCondition autoConfirm true}}
-                                <p><strong>Please note:</strong> This appointment will be <strong>automatically confirmed</strong> when you complete this booking</p>
-                            {{else}}   
-                                <p><strong>Please note:</strong> This appointment must be confirmed by the ad poster before this booking is final. 
-                                The ad poster will be notified of your booking and you will receive an email confirmation from the ad poster shortly.
-                                </p>
-                            {{/ifCondition}} 
+                            <div class="well well-sm">
+                                {{#ifCondition autoConfirm true}}
+                                    <strong>Please note:</strong> This appointment will be <strong>automatically confirmed</strong> when you complete this booking.
+                                {{else}}   
+                                    <strong>Please note:</strong> This appointment must be confirmed by the ad poster before this booking is final. 
+                                    The ad poster will be notified of your booking and you will receive an email confirmation or cancellation from the ad poster shortly.
+                                {{/ifCondition}} 
+                            </div>
                         {{/ifCondition}} 
-
-                        {{#ifCondition context 'seller'}}
-                            <input type="submit" value="Set up appointment" class="btn btn-primary" data-book-submit />
-                        {{else}}       
-                            <input type="submit" value="Book appointment" class="btn btn-primary" data-book-submit />
-                        {{/ifCondition}} 
-
-                        <div class="success-notification confirm hidden alert alert-info">
+                        <div class="success-notification confirm hidden alert alert-success">
                             {{#ifCondition context 'seller'}}
                                 <div class="" role="alert">  
+                                    <span class="glyphicon glyphicon-ok-circle"></span>
                                     <strong>Booking confirmed!</strong>
-                                        Thanks, this booking has now been confirmed and the attendee has been notified by email
+                                    Thanks, this booking has now been confirmed and the attendee has been notified by email
                                 </div>
                             {{/ifCondition}} 
                             {{#ifCondition context 'buyer'}}
                                 {{#ifCondition autoConfirm true}}
-                                    <p>Thanks, your booking is confirmed and the ad poster has been notified by email</p>
+                                    <span class="glyphicon glyphicon-ok-circle"></span>
+                                    Thanks, your booking is confirmed and the ad poster has been notified by email
                                 {{else}}   
-                                    <p>
-                                        Thanks, the ad poster has been notified of your booking and will be in touch shortly
-                                    </p>
+                                    <span class="glyphicon glyphicon-ok-circle"></span>
+                                    Thanks, the ad poster has been notified of your booking and will be in touch
                                 {{/ifCondition}} 
                             {{/ifCondition}} 
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        {{#ifCondition context 'seller'}}
+                            <input type="submit" value="Set up appointment" class="btn btn-success" data-book-submit />
+                        {{else}}       
+                            <input type="submit" value="Book appointment" class="btn btn-success" data-book-submit />
+                        {{/ifCondition}} 
+                    </div>    
+                </form>
             </div>
         </div>
     </script>
@@ -230,25 +252,27 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Booking details</h4>
+                    <h3 class="modal-title" id="myModalLabel">Booking details</h3>
                 </div>
             <div class="modal-body">
-                <ul>
-                    <li><strong>Date:</strong> {{prettyDate}}</li>
-                    <li><strong>Time:</strong> {{prettyTime}}</li>
-                    <li><strong>Location:</strong> {{location}}</li>
-                    <li><strong>Name:</strong> {{name}}</li>
-                    <li><strong>Phone:</strong> {{phone}}</li>
-                    <li><strong>Email:</strong> {{email}}</li>
-                    <li><strong>Message subject:</strong> {{msgSubject}}</li>
-                    <li><strong>Message:</strong> {{message}}</li>
-                    <li><strong>Booking status:</strong> <span class="txt-capitalise">{{status}}</span></li>
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Date:</strong> {{prettyDate}}</li>
+                    <li class="list-group-item"><strong>Time:</strong> {{prettyTime}}</li>
+                    <li class="list-group-item"><strong>Location:</strong> {{location}}</li>
+                    <li class="list-group-item"><strong>Name:</strong> {{name}}</li>
+                    <li class="list-group-item"><strong>Phone:</strong> {{phone}}</li>
+                    <li class="list-group-item"><strong>Email:</strong> {{email}}</li>
+                    <li class="list-group-item"><strong>Message subject:</strong> {{msgSubject}}</li>
+                    <li class="list-group-item"><strong>Message:</strong> {{message}}</li>
+                    <li class="list-group-item"><strong>Booking status:</strong> <span class="txt-capitalise">{{status}}</span></li>
                 </ul>
                 <div class="success-notification cancel hidden alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-ok-circle"></span>
                     <strong>Booking cancelled!</strong>
                     Thanks, this booking has now been cancelled and <strong>{{name}}</strong> has been notified by email at <strong>{{email}}</strong>
                 </div>  
-                <div class="success-notification confirm hidden alert alert-info" role="alert">  
+                <div class="success-notification confirm hidden alert alert-success" role="alert">  
+                    <span class="glyphicon glyphicon-ok-circle"></span>
                     <strong>Booking confirmed!</strong>
                     Thanks, this booking has now been confirmed and <strong>{{name}}</strong> has been notified by email at <strong>{{email}}</strong>
                 </div>   
@@ -262,7 +286,7 @@
                 {{/ifCondition}}   
                 {{#ifCondition status 'tentative'}}
                     {{#ifCondition isInPast false}}
-                        <button type="button" class="btn btn-primary" data-confirm-slot>Confirm booking</button>
+                        <button type="button" class="btn btn-success" data-confirm-slot>Confirm booking</button>
                         <button type="button" class="btn btn-danger" data-cancel-slot>Cancel booking</button>
                     {{/ifCondition}}    
                 {{/ifCondition}}  
@@ -294,11 +318,13 @@
                         </li>     
                     </ul>
                     <div class="success-notification cancel-all-keep hidden alert alert-danger" role="alert">  
+                        <span class="glyphicon glyphicon-ok-circle"></span>
                         <strong>All apointments cancelled!</strong>
                         Thanks, you have cancelled <strong>{{cancelledSlotCount}}</strong> appointments. <br>
                         You now have <strong>{{updatedSlotCount}}</strong> available slots in your calendar.
                     </div>  
                     <div class="success-notification cancel-all-close hidden alert alert-danger" role="alert">  
+                        <span class="glyphicon glyphicon-ok-circle"></span>
                         <strong>All slots closed!</strong>
                         Thanks, you have cancelled <strong>{{cancelledSlotCount}}</strong> appointments. <br>
                         You now have <strong>0</strong> available slots in your calendar.
