@@ -102,10 +102,10 @@ button {
 
 .modal-body .well {
   margin-bottom: 0; }
+  .modal-body .well + .alert {
+    margin-top: 10px; }
 .modal-body .list-group {
   margin-bottom: 10px; }
-.modal-body + .alert {
-  margin-top: 10px; }
 
 /*++++++++++++++++++++++++++  
 // Badges
