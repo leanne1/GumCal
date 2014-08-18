@@ -182,13 +182,16 @@
                 {{startDate}} - {{endDate}}
             </h2>
             {{#ifCondition context 'buyer'}}
-                {{#ifNotEquals locationPrivate true}}
-                    <div class="well well-sm">
-                        <span class="glyphicon glyphicon-map-marker"></span>
-                        <strong>Meeting location</strong>: {{location}}
-                    </div> 
-                {{/ifNotEquals}}    
-            {{/ifCondition}}     
+                <div class="well well-sm">
+                    <span class="glyphicon glyphicon-map-marker"></span>
+                    <strong>Meeting location</strong>: 
+                    {{#ifNotEquals locationPrivate true}}
+                        {{location}}
+                    {{else}}
+                        To be confirmed upon booking
+                    {{/ifNotEquals}} 
+                </div>  
+            {{/ifCondition}}      
             {{#ifCondition context 'seller'}}
                 <div data-view="dashboard" class="panel panel-default"></div>
             {{/ifCondition}}     
