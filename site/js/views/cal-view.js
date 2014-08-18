@@ -48,7 +48,9 @@ gumCal.CalView = Backbone.View.extend({
 		this.$el.html(this.calTemplate({
 			context: this.context,
 			startDate: this.prettyStartDate,
-			endDate: this.prettyEndDate
+			endDate: this.prettyEndDate,
+			location: this.location,
+			locationPrivate: this.locationPrivate
 		}));
 
 		//Cache subview containers

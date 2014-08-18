@@ -26,13 +26,21 @@
                 <span class="glyphicon glyphicon-calendar glyphicon-auto"></span>
                 {{startDate}} - {{endDate}}
             </h2>
+            {{#ifCondition context 'buyer'}}
+                {{#ifNotEquals locationPrivate true}}
+                    <div class="well well-sm">
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                        <strong>Meeting location</strong>: {{location}}
+                    </div> 
+                {{/ifNotEquals}}    
+            {{/ifCondition}}     
             {{#ifCondition context 'seller'}}
                 <div data-view="dashboard" class="panel panel-default"></div>
             {{/ifCondition}}     
             <div data-view="month"></div>
             <div data-view="day"></div>
         </div>    
-    </script>   
+    </script>    
 
     <script id="dashboardview-template" type="text/x-handlebars-template">
         <div class="panel-heading">
