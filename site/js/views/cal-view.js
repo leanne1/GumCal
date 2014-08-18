@@ -25,9 +25,11 @@ gumCal.CalView = Backbone.View.extend({
 		this.locationPrivate = this.calSettings.locationPrivate;
 		this.autoConfirm = this.calSettings.autoConfirm;
 		this.location = this.calSettings.location;
+		this._$calSubmitBtn = $('[data-cal-submit="' + this.adId + '"]');
 
 		this.lastDayViewed = undefined;
 		this.currentDate = this.getCurrentDate();
+		this.setSubmitState();
 
 		console.log(this.calSettings);
 		console.log(this.collection);
@@ -38,6 +40,10 @@ gumCal.CalView = Backbone.View.extend({
 		
 		//Update last day viewed property
 		this.on('lastDayViewed', this.updateLastDayViewed);
+
+		//Set state on cal submit button when collection length changed
+		this.listenTo(this.collection, 'remove add', this.setSubmitState);
+		
 	},
 	
 	//+++++++++++++++++++++++++++++++++++++++++
@@ -74,6 +80,19 @@ gumCal.CalView = Backbone.View.extend({
 		this.off('lastDayViewed');
 		this.trigger('calViewClosed');
 		this.remove();
+	},
+
+	//+++++++++++++++++++++++++++++++++++++++++
+	//+ Set calendar submit button state
+	//+++++++++++++++++++++++++++++++++++++++++
+	
+	//Enable / disable submit button on cal depending on collection status	
+	setSubmitState: function(){
+		if(this.collection.length) {
+			this._$calSubmitBtn.attr('disabled', true);
+		} else {
+			this._$calSubmitBtn.removeAttr('disabled');
+		}
 	},
 
 	//+++++++++++++++++++++++++++++++++++++++++
