@@ -43,7 +43,7 @@ gumCal.CalView = Backbone.View.extend({
 
 		//Set state on cal submit button when collection length changed
 		this.listenTo(this.collection, 'remove add', this.setSubmitState);
-		
+
 	},
 	
 	//+++++++++++++++++++++++++++++++++++++++++

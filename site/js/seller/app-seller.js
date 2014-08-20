@@ -25,6 +25,8 @@ $(function(){
 	        dateFormat: 'yy-mm-dd'
 	    }); 
 
+		yokeInputs(adId);
+
 		//Check if app has already been initialised; if not then initialise 
 		submitBtn.addEventListener('click', function( e ){
 			e.preventDefault();
@@ -33,6 +35,31 @@ $(function(){
 		});
 	
 	};	
+	
+	//+++++++++++++++++++++++++++++++++++++++++
+	//+ Yoke inputs
+	//+++++++++++++++++++++++++++++++++++++++++
+	
+	yokeInputs = function(adId){
+		var masterInput = document.querySelectorAll('[data-master-input]')
+			;		
+
+		for (var i = 0; i < masterInput.length; i++) {
+			(function(index){
+				console.log(i);
+				masterInput[index].addEventListener('change', function(){
+					var inputName = this.getAttribute('data-master-input'),
+						puppetInput = document.querySelector('[data-puppet-input="' + inputName + '"]'),
+						isChecked = this.checked;
+					if(isChecked) {
+						puppetInput.removeAttribute('disabled');
+					} else {
+						puppetInput.setAttribute('disabled', true);
+					}
+				});	
+			})(i);
+		}	
+	};
 
 	//+++++++++++++++++++++++++++++++++++++++++
 	//+ Init cal
