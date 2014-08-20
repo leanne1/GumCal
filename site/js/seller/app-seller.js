@@ -46,7 +46,6 @@ $(function(){
 
 		for (var i = 0; i < masterInput.length; i++) {
 			(function(index){
-				console.log(i);
 				masterInput[index].addEventListener('change', function(){
 					var inputName = this.getAttribute('data-master-input'),
 						puppetInput = document.querySelector('[data-puppet-input="' + inputName + '"]'),
