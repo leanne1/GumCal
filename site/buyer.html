@@ -9,13 +9,13 @@
         <title>Buyer calendar</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="assets/css/normalize.css">
-        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/gumcal.css">
-        <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
-        <link rel="stylesheet" href="assets/css/jquery-ui.structure.min.css">
-        <link rel="stylesheet" href="assets/css/jquery-ui.theme.min.css">
+        <link rel="stylesheet" href="resources/styles/vendor/normalize.css">
+        <link rel="stylesheet" href="resources/styles/vendor/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="resources/styles/vendor/bootstrap.min.css">
+        <link rel="stylesheet" href="resources/styles/vendor/jquery-ui.min.css">
+        <link rel="stylesheet" href="resources/styles/vendor/jquery-ui.structure.min.css">
+        <link rel="stylesheet" href="resources/styles/vendor/jquery-ui.theme.min.css">
+        <link rel="stylesheet" href="public/assets/css/gumcal.css">
     </head>
     <body>
     <section id="calendar" class="is-buyer"></section><!-- cal view el -->
@@ -352,32 +352,32 @@
         </div>    
     </script> 
 
-		<script src="js/lib/jquery-1.11.1.js"></script>
-        <script src="js/lib/jquery-ui.min.js"></script>
-        <script src="js/lib/bootstrap.min.js"></script>
-        <script src="js/lib/handlebars-v1.3.0.js"></script>
-        <script src="js/lib/handlebars-helpers.js"></script>
-		<script src="js/lib/underscore.js"></script>
-        <script src="js/lib/backbone.js"></script>
-        <script src="js/models/slot.js"></script>
-		<script src="js/collections/slots.js"></script>
-		<script src="js/views/cal-view.js"></script>
-        <script src="js/views/dashboard-view.js"></script>
-        <script src="js/views/month-view.js"></script>
-        <script src="js/views/day-view.js"></script>
-		<script src="js/views/booking-view.js"></script>
-        <script src="js/views/slot-view.js"></script>
-        <script src="js/views/detail-view.js"></script>
-        <script src="js/views/cancel-all-view.js"></script>
-		<script src="js/buyer/app-buyer.js"></script>
+		<script src="resources/js/lib/jquery-1.11.1.js"></script>
+        <script src="resources/js/lib/jquery-ui.min.js"></script>
+        <script src="resources/js/lib/bootstrap.min.js"></script>
+        <script src="resources/js/lib/handlebars-v1.3.0.js"></script>
+        <script src="resources/js/lib/handlebars-helpers.js"></script>
+        <script src="resources/js/lib/underscore.js"></script>
+        <script src="resources/js/lib/backbone.js"></script>
+        <script src="app/models/slot.js"></script>
+        <script src="app/collections/slots.js"></script>
+        <script src="app/views/cal-view.js"></script>
+        <script src="app/views/dashboard-view.js"></script>
+        <script src="app/views/month-view.js"></script>
+        <script src="app/views/day-view.js"></script>
+        <script src="app/views/booking-view.js"></script>
+        <script src="app/views/slot-view.js"></script>
+        <script src="app/views/detail-view.js"></script>
+        <script src="app/views/cancel-all-view.js"></script>
+		<script src="app/buyer/app-buyer.js"></script>
 
         <script>
             gumCal.config = {
                 context: "buyer",
                 adId: "123456789",
                 slotDuration: 15,
-                startDate: '2014-08-01',
-                endDate: '2014-08-31',
+                startDate: '2014-11-01',
+                endDate: '2014-11-30',
                 location: 'Whittakers',
                 locationPrivate: true,
                 msgRequired: true,
