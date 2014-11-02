@@ -3,178 +3,23 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Seller calendar</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="assets/css/normalize.css">
-    <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/gumcal.css">
-    <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
-    <link rel="stylesheet" href="assets/css/jquery-ui.structure.min.css">
-    <link rel="stylesheet" href="assets/css/jquery-ui.theme.min.css">
-</head>
-<body>
-    
-    <section class="panel panel-default" data-ad-config data-ad-id="123456789">
-        <div class="panel-heading">
-            <h2 class="panel-title">Set up your calendar</h2>
-        </div>       
-        <div class="panel-body">
-            <form class="cal-config" role="form">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="form-group">
-                            <label for="slot-duration-123456789">Slot duration</label>
-                            <select id="slot-duration-123456789" class="form-control">
-                            	<option value="15" selected>15 mins</option>
-                                <option value="30">30 mins</option>
-                                <option value="60">60 mins</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">        
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label for="date-from-123456789">Date from:</label>
-                            <input type="text" class="form-control" id="date-from-123456789" /><!-- jQuery datepicker-->
-                        </div>    
-                    </div>  
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label for="date-to-123456789">Date to:</label>
-                            <input type="text" class="form-control" id="date-to-123456789" /><!-- jQuery datepicker-->
-                        </div>    
-                    </div> 
-                </div>
-                <div class="row">    
-                    <div class="col-xs-12">
-                        <div class="form-group">
-                            <label for="location-123456789">Location:</label>
-                            <input type="text" class="form-control" id="location-123456789" />
-                        </div>    
-                    </div>      
-                    <div class="col-xs-12">
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <label for="location-private-123456789">
-                                   <input type="checkbox" id="location-private-123456789" />
-                                   Keep location private
-                               </label>
-                           </div>
-                           <div class="checkbox">
-                                <label for="auto-confirm-123456789">
-                                    <input type="checkbox" id="auto-confirm-123456789" />
-                                    Auto confirm appointments
-                                </label>
-                            </div> 
-                       </div>    
-                   </div> 
-               </div>    
-               <div class="row">       
-                    <div class="col-xs-12">  
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <label for="buyer-msg-required-123456789">
-                                    <input type="checkbox" id="buyer-msg-required-123456789" data-master-input="buyer-msg-required-123456789" checked />
-                                    Buyer message required
-                                </label>
-                            </div>   
-                            <label for="msg-subject-123456789">Message subject:</label>
-                            <input type="text" class="form-control" data-puppet-input="buyer-msg-required-123456789" id="msg-subject-123456789" />     
-                        </div>
-                    </div> 
-                </div>        
-            </form> 
-         </div>    
-         <div class="panel-footer">
-            <button type="submit" class="btn btn-primary" data-cal-submit="123456789">Publish cal</button>
-        </div>  
-    </section>
-    <section id="cal-123456789"></section><!-- cal view el -->
-<!-- 
-    <section class="panel panel-default" data-ad-config data-ad-id="998989787" >
-        <div class="panel-heading">
-            <h2 class="panel-title">Set up your calendar</h2>
-        </div>       
-        <div class="panel-body">
-            <form class="cal-config" role="form">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="form-group">
-                            <label for="slot-duration-998989787">Slot duration</label>
-                            <select id="slot-duration-998989787" class="form-control">
-                                <option value="15" selected>15 mins</option>
-                                <option value="30">30 mins</option>
-                                <option value="60">60 mins</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">        
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label for="date-from-998989787">Date from:</label>
-                            <input type="text" class="form-control" id="date-from-998989787" />
-                        </div>    
-                    </div>  
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label for="date-to-998989787">Date to:</label>
-                            <input type="text" class="form-control" id="date-to-998989787" />
-                        </div>    
-                    </div> 
-                </div>
-                <div class="row">    
-                    <div class="col-xs-12">
-                        <div class="form-group">
-                            <label for="location-998989787">Location:</label>
-                            <input type="text" class="form-control" id="location-998989787" />
-                        </div>    
-                    </div>      
-                    <div class="col-xs-12">
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <label for="location-private-998989787">
-                                   <input type="checkbox" id="location-private-998989787" />
-                                   Keep location private
-                               </label>
-                           </div>
-                           <div class="checkbox">
-                                <label for="auto-confirm-998989787">
-                                    <input type="checkbox" id="auto-confirm-998989787" />
-                                    Auto confirm appointments
-                                </label>
-                            </div> 
-                       </div>    
-                   </div> 
-               </div>    
-               <div class="row">       
-                    <div class="col-xs-12">  
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <label for="buyer-msg-required-998989787">
-                                    <input type="checkbox" id="buyer-msg-required-998989787" checked />
-                                    Buyer message required
-                                </label>
-                            </div>   
-                            <label for="msg-subject-998989787">Message subject:</label>
-                            <input type="text" class="form-control" id="msg-subject-998989787" />     
-                        </div>
-                    </div> 
-                </div>        
-            </form> 
-         </div>    
-         <div class="panel-footer">
-            <button type="submit" class="btn btn-primary" data-cal-submit>Publish cal</button>
-        </div>  
-    </section>
-    <section id="cal-998989787" class="is-seller"></section> -->
-    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Buyer calendar</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="assets/css/normalize.css">
+        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/gumcal.css">
+        <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
+        <link rel="stylesheet" href="assets/css/jquery-ui.structure.min.css">
+        <link rel="stylesheet" href="assets/css/jquery-ui.theme.min.css">
+    </head>
+    <body>
+    <section id="calendar" class="is-buyer"></section><!-- cal view el -->
+        
     <script id="calview-template" type="text/x-handlebars-template">
         <div class="panel-body">
             <h2 class="h3">
@@ -198,7 +43,7 @@
             <div data-view="month"></div>
             <div data-view="day"></div>
         </div>    
-    </script>   
+    </script>    
 
     <script id="dashboardview-template" type="text/x-handlebars-template">
         <div class="panel-heading">
@@ -507,36 +352,38 @@
         </div>    
     </script> 
 
-    <script src="js/lib/jquery-1.11.1.js"></script>
-    <script src="js/lib/jquery-ui.min.js"></script>
-    <script src="js/lib/bootstrap.min.js"></script>
-    <script src="js/lib/handlebars-v1.3.0.js"></script>
-    <script src="js/lib/handlebars-helpers.js"></script>
-    <script src="js/lib/underscore.js"></script>
-    <script src="js/lib/backbone.js"></script>
-    <script src="js/models/slot.js"></script>
-    <script src="js/collections/slots.js"></script>
-    <script src="js/views/cal-view.js"></script>
-    <script src="js/views/dashboard-view.js"></script>
-    <script src="js/views/month-view.js"></script>
-    <script src="js/views/day-view.js"></script>
-    <script src="js/views/booking-view.js"></script>
-    <script src="js/views/slot-view.js"></script>
-    <script src="js/views/detail-view.js"></script>
-    <script src="js/views/cancel-all-view.js"></script>
-    <script src="js/seller/app-seller.js"></script>
+		<script src="js/lib/jquery-1.11.1.js"></script>
+        <script src="js/lib/jquery-ui.min.js"></script>
+        <script src="js/lib/bootstrap.min.js"></script>
+        <script src="js/lib/handlebars-v1.3.0.js"></script>
+        <script src="js/lib/handlebars-helpers.js"></script>
+		<script src="js/lib/underscore.js"></script>
+        <script src="js/lib/backbone.js"></script>
+        <script src="js/models/slot.js"></script>
+		<script src="js/collections/slots.js"></script>
+		<script src="js/views/cal-view.js"></script>
+        <script src="js/views/dashboard-view.js"></script>
+        <script src="js/views/month-view.js"></script>
+        <script src="js/views/day-view.js"></script>
+		<script src="js/views/booking-view.js"></script>
+        <script src="js/views/slot-view.js"></script>
+        <script src="js/views/detail-view.js"></script>
+        <script src="js/views/cancel-all-view.js"></script>
+		<script src="js/buyer/app-buyer.js"></script>
 
-    <!-- !!!FOR DEV -->
-    <script>
-    $('#date-from-123456789').val('2014-08-01');
-    $('#date-to-123456789').val('2014-08-31');
-    $('#location-123456789').val('Whittakers');
-    $('#msg-subject-123456789').val('Why are you awesome?');
-
-    $('#date-from-998989787').val('2014-08-01');
-    $('#date-to-998989787').val('2014-08-31');
-    $('#location-998989787').val('Whittakers 2');
-    $('#msg-subject-998989787').val('Why are you awesome 2?');
-    </script>
-</body>
+        <script>
+            gumCal.config = {
+                context: "buyer",
+                adId: "123456789",
+                slotDuration: 15,
+                startDate: '2014-08-01',
+                endDate: '2014-08-31',
+                location: 'Whittakers',
+                locationPrivate: true,
+                msgRequired: true,
+                msgSubject: 'Why are you awesome?',
+                autoConfirm: false
+            };
+        </script>
+    </body>
 </html>

@@ -1,2 +1,0 @@
-cd Dropbox/Projects/Backbone/GumCal
-sass --watch site/resources/scss:site/assets/css
