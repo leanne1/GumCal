@@ -21,11 +21,12 @@ module.exports = function(grunt) {
         watch: {
             sass: {
                 files: [sourceDir + 'styles/**/*.scss'],
-                tasks: ['sass', 'concat:css']
+                tasks: ['sass', 'concat:css', 'uglify']
             } 
         },
         
-        concat: {
+        //Concat css and js files    
+        concat: {   
             options: {
                 separator: ';',
             },
@@ -82,6 +83,7 @@ module.exports = function(grunt) {
             }
         },
 
+        //Uglify js
         uglify: {
             options: {
                 compress: {
@@ -143,4 +145,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default',['sass', 'concat', 'copy', 'watch']);
+    grunt.registerTask('build',['sass', 'concat', 'uglify', 'copy']);
 }
