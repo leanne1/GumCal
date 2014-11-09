@@ -21,8 +21,7 @@ button {
 }
 
 body {
-    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    line-height: 1.4em;
+    font: 14px/1.4em 'Helvetica Neue', Helvetica, Arial, sans-serif;
     background-color: white;
     color: #4d4d4d;
     width: 70%;
@@ -89,6 +88,7 @@ button {
         margin-top: -3px;
     }
 }
+
 .pagination>li>span:hover{
     cursor: pointer;
 }
@@ -107,21 +107,24 @@ button {
 .alert {
     margin-bottom: 0;
 }
+
 .glyphicon {
     top: 4px;
     font-size: 18px;
     opacity: 0.8;
     margin-right: 3px;
 }
+
 .glyphicon-auto {
     opacity: 1;
     font-size: inherit;
 }
+
 .modal-body {
     .well {
         margin-bottom: 0;
 
-        &+.alert{
+        & + .alert{
             margin-top: 10px;
         }
     }    
@@ -137,9 +140,11 @@ button {
 .badge-success{
     background-color:#468847;
 }
+
 .badge-info{
     background-color:#3a87ad;
 }
+
 .badge-warning{
     background-color:#f89406;
 }
@@ -150,11 +155,13 @@ button {
 * {
     box-sizing: border-box; 
 }
+
 .cal-month {
     width: 100%;
     margin: 0;
     padding: 0;
 }
+
 .cal-month > li {
     border: solid grey 1px;
     display:block;
@@ -166,15 +173,13 @@ button {
     overflow:hidden;
     cursor: pointer;
 }
+
 .cal-month > li:nth-of-type(7n+1){
     clear:left;
 }  
 
 .cal-day > li {
     cursor: pointer;
-}
-.cal-day.is-buyer > li {
-    cursor: default;
 }
 
 .cal-month > li.is-active{
@@ -191,9 +196,6 @@ button {
     }
 }
 
-.is-buyer .is-past{
-    cursor: default;
-}
 /*++++++++++++++++++++++++++++
 //	Day view 
 ++++++++++++++++++++++++++++*/
@@ -209,18 +211,21 @@ button {
     position: relative;
 }
 
-.cal-day.buyer li,
+.cal-day.public li,
 .cal-day.is-past li {
     cursor: default;
 }
+
 .cal-day > .alert{
     margin-bottom: 0;
     padding-top: 5px;
 }
+
 .cal-day > .alert-warning{
     border-left-color: #faebcc;
     border-right-color: #faebcc;
 }
+
 .cal-day > .alert-success{
     border-left-color: #d6e9c6;
     border-right-color: #d6e9c6;
@@ -250,32 +255,31 @@ button {
     cursor: default;
 }
 
-/* Seller styles */
-
-.seller.is-booked {
+/* Private calendar styles */
+.private.is-booked {
     color: #dff0d8;
     background-color: #5cb85c;
     cursor: default;
 }
 
-.seller.is-available {
+.private.is-available {
     background-color: #428bca;
 }
 
-.seller.is-past {
+.private.is-past {
     background-color: #cccccc;
     cursor: default;
 }
 
-.seller.is-tentative {
+.private.is-tentative {
     color: #fcf8e3;
     background-color: #f0ad4e;
     cursor: default;
 }
 
-/* Buyer styles */
-.buyer.is-booked,
-.buyer.is-tentative {
+/* Public calendar styles */
+.public.is-booked,
+.public.is-tentative {
     background-color: #cccccc;
     color: #999;
 
@@ -283,10 +287,10 @@ button {
         display: none;
     }
 }
-.buyer.is-tentative:after {
+.public.is-tentative:after {
     content: 'Awaiting confirmation';
 }
-.buyer.is-booked:after {
+.public.is-booked:after {
     content: 'Booking confirmed';
 }
 [data-view-slot]:hover,

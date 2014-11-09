@@ -174,6 +174,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 
+    //Grunt tasks
     grunt.registerTask('dev',['watch']);
     grunt.registerTask('build',['sass', 'concat', 'copy', 'uglify', 'cssmin']);
 }

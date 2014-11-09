@@ -40,7 +40,7 @@ gumCal.DayView = Backbone.View.extend({
 		//New slot added to collection - render its subview to day view
 		this.listenTo(this.collection, 'add', this.appendOneSlot);
 
-		//Check if a prevously closed slot needs to be re-appended to day view on buyer side
+		//Check if a prevously closed slot needs to be re-appended to day view on public side
 		this.listenTo(this.collection, 'change:status', this.checkSlotPreviousStatus);
 
 		//Day view (this) or cal view removed - remove all slot subviews
@@ -84,21 +84,21 @@ gumCal.DayView = Backbone.View.extend({
 
 	//++++++++++++++++++++++++++++++++++++++++++++
 	//+ Build slot placeholders - 
-	//+ forking for buyer or seller context
+	//+ forking for public or private context
 	//++++++++++++++++++++++++++++++++++++++++++++
 
 	makeSlotPlaceholders: function () {
 		var placeholders;
 
-		if (this.context === 'seller') {
-			placeholders = this.makeSellerSlotPlaceholders();
+		if (this.context === 'private') {
+			placeholders = this.makePrivateSlotPlaceholders();
 		} else {
-			placeholders = this.makeBuyerSlotPlaceholders();
+			placeholders = this.makePublicSlotPlaceholders();
 		}
 		return placeholders;
 	},
 
-	makeSellerSlotPlaceholders: function(){
+	makePrivateSlotPlaceholders: function(){
 		var date = this.date,
 			startHour = 6, 
 			endHour = 24,
@@ -108,7 +108,7 @@ gumCal.DayView = Backbone.View.extend({
 		return slotTimes;
 	},
 
-	makeBuyerSlotPlaceholders: function(){
+	makePublicSlotPlaceholders: function(){
 		var date = this.date,
 			startHour = 6, 
 			endHour = 24,
@@ -132,7 +132,7 @@ gumCal.DayView = Backbone.View.extend({
 			
 		//Check we clicked on a placeholder	to abort bubbing of slot view clicks
 		//and preventing multiple instances of the same model being created	
-		if (slotTime && !isInPast && this.context === 'seller') { 
+		if (slotTime && !isInPast && this.context === 'private') { 
 			this.collection.create(this.createSlotAttributes(slotIndex), {wait : true});	
 		}
 	},
@@ -172,13 +172,13 @@ gumCal.DayView = Backbone.View.extend({
 			slots = this.collection.filterByDate(this.date),
 			availableSlots = this.collection.filterByStatus.call(slots, 'available')
 			;
-		if (this.context === 'seller') {
-			//Seller cal - append all slots types for this date
+		if (this.context === 'private') {
+			//private cal - append all slots types for this date
 			_.each(slots, function(slot){
 				self.appendOneSlot(slot);
 			});
 		} else {
-			//Buyer cal - append only available slots for this date
+			//public cal - append only available slots for this date
 			_.each(availableSlots, function(slot){
 				self.appendOneSlot(slot);
 			});
@@ -190,12 +190,12 @@ gumCal.DayView = Backbone.View.extend({
 	//+ Check a slot with changed status
 	//+++++++++++++++++++++++++++++++++++++++++
 	
-	//Re-append an available slot to buyer side if it has been booked/tentative and removed previously
+	//Re-append an available slot to public side if it has been booked/tentative and removed previously
 	checkSlotPreviousStatus: function(slot){
 		var updatedStatus = slot.get('status'),
 			previousStatus = slot.previous('status')
 			;
-		if (this.context === 'buyer' && updatedStatus === 'available') {
+		if (this.context === 'public' && updatedStatus === 'available') {
 			if (previousStatus === 'booked' || previousStatus === 'tentative') {
 				this.appendOneSlot(slot);
 			}
@@ -232,8 +232,8 @@ gumCal.DayView = Backbone.View.extend({
 		prevDay = prevDay < 0 ? 0 : prevDay;
 		isInPast = this.parentView.isInPast(this.days[prevDay]);
 		
-		//Check if we are in seller context, or if in buyer context, that chosen day is not in the past		
-		if (this.context === 'seller' || !isInPast){
+		//Check if we are in private context, or if in public context, that chosen day is not in the past		
+		if (this.context === 'private' || !isInPast){
 			this.parentView.showDayView(prevDay);
 		} else {
 			return;

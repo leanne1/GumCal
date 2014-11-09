@@ -118,7 +118,7 @@ gumCal.CalView = Backbone.View.extend({
 	
 	//Dashboard
 	buildDashboard: function(){
-		if(this.context === 'seller') {
+		if(this.context === 'private') {
 			var dashboardViewOptions = _.extend({ 
 				el: this.$dashboardContainer,
 				collection: this.collection,

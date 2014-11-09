@@ -10,8 +10,6 @@ gumCal.Slot = Backbone.Model.extend({
 		bookedBy: ''
 	},
 
-	//TODO: We may need to change this value / remove this property
-	//when we wire into the scala persistence layer
 	idAttribute: '_id',
 	
 	initialize: function(options){
@@ -25,9 +23,9 @@ gumCal.Slot = Backbone.Model.extend({
 
 	//Called from booking view
 	bookSlot: function(attr, context){
-		if ( (context === 'seller') || (context === 'buyer' && this.autoConfirm) ) {
+		if ( (context === 'private') || (context === 'public' && this.autoConfirm) ) {
 			attr.status = 'booked';
-		} else if ( context === 'buyer' && !this.autoConfirm ) {
+		} else if ( context === 'public' && !this.autoConfirm ) {
 			attr.status = 'tentative';
 		}
 		this.setAttributes(attr);

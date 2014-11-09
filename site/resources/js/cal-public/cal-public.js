@@ -1,7 +1,7 @@
 var gumCal = gumCal || {};
 	gumCal.Cals = gumCal.Cals || {};
 
-//Buyer side initialise
+//Public calendar initialise
 $(function(){
 	
 	//Instantiate a cal app 
@@ -23,7 +23,7 @@ $(function(){
 			
 			slots[adId] = new gumCal.Slots(adId);
 			
-			///TODO: When using RESTful API, change this to be actual url
+			///TODO: If using RESTful API, change this to be actual url
 			slots[adId].url = '/api/v1/123456789/cal/slots';
 			slots[adId].fetch({ reset: true });
 			

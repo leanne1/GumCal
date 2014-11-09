@@ -22,10 +22,6 @@ gumCal.Slots = Backbone.Collection.extend({
 		},1000);
 	},
 
-	stopPoll: function(){
-		window.clearInterval(this.poll);
-	},
-
 	//++++++++++++++++++++++++++++++++++
 	//+ Collection filter methods
 	//++++++++++++++++++++++++++++++++++

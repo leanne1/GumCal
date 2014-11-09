@@ -77,14 +77,14 @@ gumCal.SlotView = Backbone.View.extend({
 	//+++++++++++++++++++++++++++++++++++++++++
 
 	//Handling of slot view rendering or removal on slot status change
-	//according to new status and whether view is buyer or seller
+	//according to new status and whether view is public or private
 	updateSlotView: function(slot){
 		var updatedStatus, previousStatus, bookedBy;
-		if(this.context === 'seller'){
-			//Seller side slot view updates
+		if(this.context === 'private'){
+			//private side slot view updates
 			this.render();
 		} else {
-			//Buyer side slot view updates
+			//public side slot view updates
 			updatedStatus = slot.get('status');
 			previousStatus = slot.previous('status');
 			bookedBy = slot.get('bookedBy');
@@ -95,9 +95,9 @@ gumCal.SlotView = Backbone.View.extend({
 				}
 				this.render();
 			} else if (updatedStatus === 'booked') {
-				if (bookedBy === 'buyer') {
+				if (bookedBy === 'public') {
 					this.$el.addClass('is-booked').removeClass('is-available');	
-				} else if (bookedBy === 'seller') {
+				} else if (bookedBy === 'private') {
 					this.close();	
 				}
 			} else if (updatedStatus === 'tentative') {

@@ -1,27 +1,15 @@
-// Module dependencies.
 var application_root = __dirname,
-    express = require( 'express' ), //Web framework
-    path = require( 'path' ), //Utilities for dealing with file paths
-    mongoose = require( 'mongoose' ); //MongoDB integration
+    express = require( 'express' ), 
+    path = require( 'path' ),
+    mongoose = require( 'mongoose' ); 
 
-//Create server
 var app = express();
 
-// Configure server
 app.configure( function() {
-    //parses request body and populates request.body
     app.use( express.bodyParser() );
-
-    //checks request.body for HTTP method overrides
     app.use( express.methodOverride() );
-
-    //perform route lookup based on url and HTTP method
     app.use( app.router );
-
-    //Where to serve static content
     app.use( express.static( path.join( application_root, '../site') ) );
-
-    //Show all errors in development
     app.use( express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
@@ -65,7 +53,6 @@ app.get( '/api/v1/123456789/cal/slots', function( request, response ) {
     });
 });
 
-
 //Insert a new slot
 app.post( '/api/v1/123456789/cal/slots', function( request, response ) {
     var slot = new SlotModel({
@@ -94,7 +81,6 @@ app.post( '/api/v1/123456789/cal/slots', function( request, response ) {
         }
     });
 });
-
 
 //Get a single slot by id
 app.get( '/api/v1/123456789/cal/slots/:id', function( request, response ) {
@@ -137,7 +123,6 @@ app.put( '/api/v1/123456789/cal/slots/:id', function( request, response ) {
     });
 });
 
-
 //Delete a slot
 app.delete( '/api/v1/123456789/cal/slots/:id', function( request, response ) {
     console.log( 'Deleting slot with id: ' + request.params.id );
@@ -153,9 +138,8 @@ app.delete( '/api/v1/123456789/cal/slots/:id', function( request, response ) {
     });
 });
 
-
 //Start server
-var port = 4711;
+var port = 8080;
 app.listen( port, function() {
     console.log( 'Express server listening on port %d in %s mode', port, app.settings.env );
 }); 

@@ -1,8 +1,7 @@
 var gumCal = gumCal || {};
 	gumCal.Cals = gumCal.Cals || {};
 
-
-//Seller side initialise
+//Private calendar initialise
 $(function(){
 	var initialiseCal, getUserSettings,
 		calConfigs = document.querySelectorAll('[data-ad-config]'),
@@ -31,7 +30,6 @@ $(function(){
 		submitBtn.addEventListener('click', function( e ){
 			e.preventDefault();
 			initCal(e, adId, el);
-			
 		});
 	
 	};	
@@ -79,14 +77,14 @@ $(function(){
 		e.preventDefault();
 		var userSettings = {};
 
-		userSettings.context = 'seller';
+		userSettings.context = 'private';
 		userSettings.adId = adId;
 		userSettings.slotDuration = parseInt(el.querySelector('[id^="slot-duration"]').value);
 		userSettings.startDate = el.querySelector('[id^="date-from"]').value;
 		userSettings.endDate = el.querySelector('[id^="date-to"]').value;
 		userSettings.location = el.querySelector('[id^="location"]').value;
 		userSettings.locationPrivate = el.querySelector('[id^="location-private"]').checked ? true : false;
-		userSettings.msgRequired = el.querySelector('[id^="buyer-msg-required"]').checked ? true : false;
+		userSettings.msgRequired = el.querySelector('[id^="public-msg-required"]').checked ? true : false;
 		userSettings.msgSubject = el.querySelector('[id^="msg-subject"]').value;
 		userSettings.autoConfirm = el.querySelector('[id^="auto-confirm"]').checked ? true : false;
 
@@ -103,7 +101,7 @@ $(function(){
 			
 		slots[adId] = new gumCal.Slots(adId);
 		
-		///TODO: When using RESTful API, change this to be actual url
+		///TODO: If using RESTful API, change this to be actual url
 		slots[adId].url = '/api/v1/123456789/cal/slots';
 		slots[adId].fetch({ reset: true });
 
