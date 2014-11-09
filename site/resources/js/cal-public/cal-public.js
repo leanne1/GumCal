@@ -9,7 +9,6 @@ $(function(){
 		adId = calConfig ? calConfig.adId : undefined,
 		slots = {}
 		;
-		
 		gumCal.Cals[adId] = {};
 
 		//+++++++++++++++++++++++++++++++++++++++++

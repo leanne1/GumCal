@@ -17,12 +17,19 @@ module.exports = function(grunt) {
             } 
         },
 
-        //Watch files for changes, then run given task
+        //Watch files for changes, then run given task/s
         watch: {
             sass: {
                 files: [sourceDir + 'styles/**/*.scss'],
-                tasks: ['sass', 'concat:css', 'uglify']
-            } 
+                tasks: ['sass', 'concat:css']
+            },
+            js: {
+                files: [sourceDir + 'js/**/*.js', '!' + sourceDir + 'js/lib/*.js', '!' + sourceDir + 'js/build-source/*.js'],
+                tasks: ['concat:js_app', 'concat:js_all']
+            },
+            options: {
+                livereload: true
+            }  
         },
         
         //Concat css and js files    
@@ -30,16 +37,10 @@ module.exports = function(grunt) {
             options: {
                 separator: ';',
             },
-            js: {
+            js_app: {
                 files: [{
                     src: [
-                        sourceDir + '/js/lib/jquery-1.11.1.js',
-                        sourceDir + '/js/lib/jquery-ui.min.js',  
-                        sourceDir + '/js/lib/bootstrap.min.js',  
-                        sourceDir + '/js/lib/handlebars-v1.3.0.js',  
-                        sourceDir + '/js/lib/underscore.js',  
-                        sourceDir + '/js/lib/backbone.js',
-                        sourceDir + '/js/utils/handlebars-helpers.js',  
+                        sourceDir + '/js/lib-extends/*.js',
                         sourceDir + '/js/app/models/slot.js',
                         sourceDir + '/js/app/collections/slots.js',
                         sourceDir + '/js/app/views/cal-view.js',
@@ -50,15 +51,14 @@ module.exports = function(grunt) {
                         sourceDir + '/js/app/views/slot-view.js',
                         sourceDir + '/js/app/views/detail-view.js',
                         sourceDir + '/js/app/views/cancel-all-view.js'
-
                     ],
-                    dest: buildDir + 'js/main.js', 
+                    dest: sourceDir + 'js/build-source/app.js'
                 },
                 {
                     src: [
                         sourceDir + '/js/cal-public/**/*.js'
                     ],
-                    dest: buildDir + 'js/cal-public.js', 
+                    dest: buildDir + 'js/cal-public.js'
                 },
                 {
                     src: [
@@ -67,15 +67,36 @@ module.exports = function(grunt) {
                     dest: buildDir + 'js/cal-private.js', 
                 }]
             },
+            js_lib: {
+                files: [{
+                    src: [
+                        sourceDir + '/js/lib/jquery-1.11.1.js',
+                        sourceDir + '/js/lib/jquery-ui.js',  
+                        sourceDir + '/js/lib/bootstrap.min.js',  
+                        sourceDir + '/js/lib/handlebars-v1.3.0.js',  
+                        sourceDir + '/js/lib/underscore.js',  
+                        sourceDir + '/js/lib/backbone.js',
+                    ],
+                    dest: sourceDir + 'js/build-source/lib.js', 
+                }]
+            },
+            js_all: {
+                files: [{
+                    src: [
+                        sourceDir + '/js/build-source/lib.js',
+                        sourceDir + '/js/build-source/app.js'
+                    ],
+                    dest: buildDir + 'js/main.js', 
+                }]
+            },
             css: {
                 files: [{
                     src: [
                         sourceDir + 'styles/vendor/bootstrap-theme.min.css',
                         sourceDir + '/styles/vendor/bootstrap.min.css',
                         sourceDir + '/styles/vendor/jquery-ui.min.css',
-                        sourceDir + '/styles/vendor/jquery-ui.structure.min.css',
-                        sourceDir + '/styles/vendor/jquery-ui.theme.min.css',
-                        sourceDir + '/styles/vendor/normalize.css',
+                        sourceDir + '/styles/vendor/jquery-ui.structure.css',
+                        sourceDir + '/styles/vendor/jquery-ui.theme.css',
                         '<%= sass.dist.files[0].dest %>'
                     ],
                     dest: 'site/build/css/main.css'
@@ -93,19 +114,27 @@ module.exports = function(grunt) {
             dist: {
                 files: [
                     {
-                        src: '<%= concat.js.files[0].dest %>',
+                        src: '<%= concat.js_all.files[0].dest %>',
                         dest: buildDir + 'js/main.js'
                     },
                     {
-                        src: '<%= concat.js.files[1].dest %>',
+                        src: '<%= concat.js_app.files[1].dest %>',
                         dest: buildDir + 'js/cal-public.js'
                     },
                     {
-                        src: '<%= concat.js.files[2].dest %>',
+                        src: '<%= concat.js_app.files[2].dest %>',
                         dest: buildDir + 'js/cal-private.js'
                     }
                 ]
 
+            }
+        },
+
+        //Minify CSS
+        cssmin: {
+            minify: {
+                src: '<%= concat.css.files[0].dest %>',
+                dest: buildDir + 'css/main.css'
             }
         },
 
@@ -127,7 +156,7 @@ module.exports = function(grunt) {
             fonts: {
                 files: [{
                     expand: true,
-                    cwd: sourceDir + 'fonts/glyphicons',
+                    cwd: sourceDir + 'fonts/bs-glyphicons',
                     src: [
                         '*.eot','*.svg','*.otf','*.woff','*.ttf'
                     ],
@@ -143,7 +172,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-    grunt.registerTask('default',['sass', 'concat', 'copy', 'watch']);
-    grunt.registerTask('build',['sass', 'concat', 'uglify', 'copy']);
+    grunt.registerTask('dev',['watch']);
+    grunt.registerTask('build',['sass', 'concat', 'copy', 'uglify', 'cssmin']);
 }

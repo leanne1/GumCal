@@ -8,7 +8,7 @@ $(function(){
 		calConfigs = document.querySelectorAll('[data-ad-config]'),
 		cals = [], slots = {};
 		;
-		
+	
 	//+++++++++++++++++++++++++++++++++++++++++
 	//+ Initialise gumcal app
 	//+++++++++++++++++++++++++++++++++++++++++

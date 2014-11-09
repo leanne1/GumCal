@@ -8,6 +8,7 @@ gumCal.Slots = Backbone.Collection.extend({
 
 	initialize:function(adId){
 		this.pollRemote();
+		console.log('test2');
 	},
 
 	//++++++++++++++++++++++++++++++++++
