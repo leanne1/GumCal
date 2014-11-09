@@ -37,9 +37,9 @@ module.exports = function(grunt) {
                         sourceDir + '/js/lib/jquery-ui.min.js',  
                         sourceDir + '/js/lib/bootstrap.min.js',  
                         sourceDir + '/js/lib/handlebars-v1.3.0.js',  
-                        sourceDir + '/js/lib/handlebars-helpers.js',  
                         sourceDir + '/js/lib/underscore.js',  
                         sourceDir + '/js/lib/backbone.js',
+                        sourceDir + '/js/utils/handlebars-helpers.js',  
                         sourceDir + '/js/app/models/slot.js',
                         sourceDir + '/js/app/collections/slots.js',
                         sourceDir + '/js/app/views/cal-view.js',
@@ -114,20 +114,20 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: sourceDir + 'images/',
+                    cwd: sourceDir + 'images/jquery-ui',
                     src: [
-                        '**/*.jpg',
-                        '**/*.png',
-                        '**/*.gif',
-                        '**/*.svg'
+                        '*.jpg',
+                        '*.png',
+                        '*.gif',
+                        '*.svg'
                     ],
-                    dest: buildDir + 'images/'
+                    dest: buildDir + 'css/images/'
                 }]
             },
             fonts: {
                 files: [{
                     expand: true,
-                    cwd: sourceDir + 'fonts/',
+                    cwd: sourceDir + 'fonts/glyphicons',
                     src: [
                         '*.eot','*.svg','*.otf','*.woff','*.ttf'
                     ],

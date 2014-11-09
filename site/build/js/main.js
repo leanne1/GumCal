@@ -13063,19 +13063,7 @@ var __module0__ = (function(__dependency1__, __dependency2__, __dependency3__, _
 
   return __module0__;
 })();
-;Handlebars.registerHelper('ifCondition', function(v1, v2, options) {
-  if(v1 === v2) {
-    return options.fn(this);
-  }
-  return options.inverse(this);
-});
-
-Handlebars.registerHelper('ifNotEquals', function(v1, v2, options) {
-  if(v1 !== v2) {
-    return options.fn(this);
-  }
-  return options.inverse(this);
-});;//     Underscore.js 1.6.0
+;//     Underscore.js 1.6.0
 //     http://underscorejs.org
 //     (c) 2009-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 //     Underscore may be freely distributed under the MIT license.
@@ -16026,7 +16014,19 @@ Handlebars.registerHelper('ifNotEquals', function(v1, v2, options) {
   return Backbone;
 
 }));
-;var gumCal = gumCal || {};
+;Handlebars.registerHelper('ifCondition', function(v1, v2, options) {
+  if(v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
+Handlebars.registerHelper('ifNotEquals', function(v1, v2, options) {
+  if(v1 !== v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});;var gumCal = gumCal || {};
 
 gumCal.Slot = Backbone.Model.extend({
 	
