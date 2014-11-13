@@ -1,7 +1,8 @@
 {
   "name": "backbone-calendar",
   "version": "0.0.1",
-  "description": "A calendar application using Backbone",
+  "description": "A calendar and bookings web application using Backbone",
+  "author": "Leanne Tite <leanne.tite@gmail.com>",
   "dependencies": {
     "express": "~3.1.0",
     "path": "~0.4.9",
@@ -15,5 +16,6 @@
     "grunt-contrib-sass": "^0.8.1",
     "grunt-contrib-uglify": "^0.6.0",
     "grunt-contrib-watch": "^0.6.1"
-  }
+  },
+  "private": true
 }
