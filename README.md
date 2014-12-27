@@ -1,14 +1,14 @@
-###Backbone Calendar application
+##Backbone Calendar application
 ===================
 ###About the application
 The calendar application was built by me as Gumtree UK's submission to eBay's internal annual Tech Con, 2014. The app placed third in the competition. The purpose of the app is to improve the ease with which classified ad buyers and sellers can arrange meetings to transact. Please note that the code and opinions below are mine only and do not reflect any code, policy or product of eBay inc, eBay Classifieds Group or any of its related companies.
 
-Currently, meetings between Gumtree UK buyers and sellers must be arranged via email and manually managed. The idea behind the calendar app is to allow sellers to publish a calendar on their View Item Page [the page detailing the goods or services they are selling] containing bookable times slots for buyer viewings. Buyers can then book one of these slots with a couple of mouse clicks. 
+Currently, meetings between Gumtree UK buyers and sellers must be arranged via email and manually managed. The idea behind the calendar app is to allow sellers to publish a calendar on their View Item Page [the page detailing the goods or services they are selling] containing bookable time slots for buyer viewings. Buyers can then book one of these slots with a couple of mouse clicks. 
 
 The app is built in Backbone.js, a javascript client-side MV* framework, with a MongoDB persistence layer storing calendar slots. There are two instances of the app, dependent on the context:
 
 ####Private instance
-The private instance of the calendar is the calendar owner's instance. The calendar owner is the seller who publishes the calendar. This instance of the calendar would be available to signed-in sellers when creating their ad in the 'post ad' flow, and later in their 'manage ads' dashboard. They can set various config options for the calendar before publishing it:  
+The private instance of the calendar is the calendar owner's instance. The calendar owner is the seller who publishes the calendar on their View Item Page. This instance of the calendar would be available to signed-in sellers when creating their ad in the 'post ad' flow, and later in their 'manage ads' dashboard. They can set various config options for the calendar before publishing it:  
  
 - Start and end dates of meetings period
 - Duration of meeting slots
@@ -32,7 +32,7 @@ The public version of the app bootstraps from a config object in the page source
 
 
 ###Running the app
-- The app runs off a Node Express server using MongoDB as a persistence layer. You need to install <a href="http://nodejs.org/">Node</a> and <a href="http://www.mongodb.org/">Mongo</a>, then download and the app source from here and run it locally to demo the calendar.
+- The app runs off a Node Express server using MongoDB as a persistence layer. You need to install <a href="http://nodejs.org/">Node</a> and <a href="http://www.mongodb.org/">Mongo</a>, then download and the app source from here and run it locally to demo the calendar app.
 - Once Node and Mongo are installed, start up mongo with ```mongod```
 - In your local copy of the project, navigate to the server folder and run ```node server``` to start the app
 - Open two tabs in your broswer: 
@@ -45,7 +45,7 @@ The public version of the app bootstraps from a config object in the page source
 
 
 ###What's missing
-There are a few things missing from the code that will be added time permits:
+There are a few things missing from the code that will be added when time permits:
 
 - Form valiation - there is currently no validation on the data imputed via forms e.g when bookings are made
 - Tests - currently no JS unit tests on the app
