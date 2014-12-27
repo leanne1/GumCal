@@ -249,7 +249,7 @@ gumCal.CalView = Backbone.View.extend({
 	
 	incrementDays: function (startDate, dayCount){
 		var day, days = [],
-			oneDay = 24*60*60*1000, // hours*minutes*seconds*milliseconds
+			oneDay = 24*60*60*1000,
 			firstDate = new Date(startDate).getTime();
 		
 		for (var i=0; i<dayCount; i++){
@@ -276,8 +276,6 @@ gumCal.CalView = Backbone.View.extend({
 		month =  _date.getMonth();
 		year =  _date.getFullYear();
 		
-		
-
 		var days = [
 			'Sunday',
 			'Monday',
