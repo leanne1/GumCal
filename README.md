@@ -33,7 +33,8 @@ The public version of the app bootstraps from a config object in the page source
 
 ###Running the app
 - The app runs off a Node Express server using MongoDB as a persistence layer. You need to install <a href="http://nodejs.org/">Node</a> and <a href="http://www.mongodb.org/">Mongo</a>, then download and the app source from here and run it locally to demo the calendar app.
-- Once Node and Mongo are installed, start up mongo with ```mongod```
+- Install dependencies by running ```npm install``` from the root folder. If this errors run instead ```sudo npm install```
+- Start up mongo with ```mongod```
 - In your local copy of the project, navigate to the server folder and run ```node server``` to start the app
 - Open two tabs in your broswer: 
 	- http://localhost:8080/cal-private.html - the private instance of the calendar

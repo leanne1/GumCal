@@ -427,10 +427,17 @@
     
     <!-- !!!FOR DEV -->
     <script>
-        $('#date-from-123456789').val('2014-11-01');
-        $('#date-to-123456789').val('2014-11-30');
-        $('#location-123456789').val('Whittakers');
-        $('#msg-subject-123456789').val('Why are you awesome?');
+         //Stub data date helper
+        function createDate (increment) {
+            var today = increment ? 
+                new Date(new Date().getTime()+(increment*86400000)) : 
+                new Date();
+            return today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate();
+        }
+        $('#date-from-123456789').val(createDate(-5));
+        $('#date-to-123456789').val(createDate(25));
+        $('#location-123456789').val('Whittaker\'s Bar, Richmond');
+        $('#msg-subject-123456789').val('Please tell me about your previous bar work experience');
     </script>
 </body>
 </html>

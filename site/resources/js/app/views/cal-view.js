@@ -259,7 +259,7 @@ gumCal.CalView = Backbone.View.extend({
 		return days;
 	},
 	
-	incrementPrettyDays: function ( days ){
+	incrementPrettyDays: function (days){
 		var prettyDays = []; 
 		for (var i=0; i<days.length; i++){
 			prettyDays.push(this.getPrettyDate(new Date(days[i])));	
@@ -267,7 +267,7 @@ gumCal.CalView = Backbone.View.extend({
 		return prettyDays;
 	},
 	
-	getPrettyDate: function( date ) {
+	getPrettyDate: function(date) {
 		var _date = new Date(date),
 			date, day, month, year, prettyDate
 			;

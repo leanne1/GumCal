@@ -354,14 +354,21 @@
                 context: "public",
                 adId: "123456789",
                 slotDuration: 15,
-                startDate: '2014-11-01',
-                endDate: '2014-11-30',
-                location: 'Whittakers',
+                location: 'Whittaker\'s Bar, Richmond',
                 locationPrivate: true,
                 msgRequired: true,
-                msgSubject: 'Why are you awesome?',
+                msgSubject: 'Please tell me about your previous bar work experience',
                 autoConfirm: false
             };
+            //Stub data date helper
+            function createDate (increment) {
+                var today = increment ? 
+                    new Date(new Date().getTime()+(increment*86400000)) : 
+                    new Date();
+                return today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate();
+            }
+            gumCal.config.startDate = createDate(-5);
+            gumCal.config.endDate = createDate(25);
         </script>
     </body>
 </html>
